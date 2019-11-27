@@ -1,100 +1,34 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Laravel</title>
+@section('content')
+<div class="pb-14 bg-right bg-cover" style="background-image:url('images/bg.svg');">
+	<div class="w-full container mx-auto p-6">
+		<div class="w-full flex items-center justify-between">
+			<a class="flex items-center no-underline hover:no-underline font-bold text-2xl lg:text-4xl"  href="/">
+                {{ config('app.name', 'Laravel') }}
+			</a>
+            <div class="flex w-1/2 justify-end content-center">
+				<a class="button inline-block no-underline text-blue-500 hover:text-blue-800 hover:text-underline text-center h-10 p-2 md:h-auto md:p-4" href="login">
+                    Login
+                </a>
+				<a class="button inline-block no-underline text-blue-500 hover:text-blue-800 hover:text-underline text-center h-10 p-2 md:h-auto md:p-4 " href="register">
+                    Register
+                </a>
+			</div>
+		</div>
+	</div>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+	<div class="container pt-20 px-6 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+		<div class="flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden">
+			<h1 class="my-4 text-3xl md:text-5xl text-blue-500 font-bold leading-tight text-center md:text-left slide-in-bottom-h1">Be in the Know,<br>Make a Poll!</h1>
+			<p class="leading-normal text-base md:text-2xl mb-8 text-center md:text-left slide-in-bottom-subtitle">Feel like you're missing something?<br>Get to know your users with a simple poll!</p>
+		</div>
+        <div class="w-full xl:w-3/5 py-6 overflow-y-hidden text-right">
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+		</div>
+		<div class="w-full pt-16 pb-6 text-sm text-center md:text-left fade-in">
+			<a class="text-gray-500 no-underline hover:no-underline" href="#">&copy; {{ config('app.name', 'Laravel') }} 2019</a>
+		</div>
+	</div>
+</div>
+@endsection
