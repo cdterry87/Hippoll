@@ -50,7 +50,7 @@
                     </button>
                 </div>
                 <div class="flex flex-row">
-                    <a class="inline-block mt-4 md:mt-2 align-baseline text-sm text-blue-500 hover:text-blue-800" href="/login">
+                    <a class="inline-block mt-4 md:mt-2 align-baseline text-sm text-blue-500 hover:text-blue-700" href="/login">
                         Already have an account? Login!
                     </a>
                 </div>
