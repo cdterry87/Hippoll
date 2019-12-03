@@ -15,10 +15,10 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="bg-gray-100">
     <main>
-        <div class="pb-14 bg-no-repeat md:bg-right " style="background-image: url('images/bg.svg'); background-size: 700px;">
-            <div class="w-full container mx-auto p-6">
+        <div class="pb-14 bg-no-repeat md:bg-right lg:mt-3" style="background-image: url('images/bg.svg'); background-size: 700px;">
+            <div class="w-full mx-auto p-6">
                 <div class="w-full flex items-center justify-between">
                     <a class="flex items-center no-underline hover:no-underline font-bold text-2xl lg:text-4xl"  href="/">
                         {{ config('app.name', 'Laravel') }}
@@ -36,8 +36,11 @@
 
             @yield('content')
 
-            <div class="container w-full pt-16 pb-6 text-sm text-center md:text-left">
-                <a class="text-gray-500 no-underline hover:no-underline" href="#">&copy; {{ config('app.name', 'Laravel') }} 2019</a>
+            <div class="w-full pt-24 pt-32 pb-6 text-sm text-center">
+                <a class="mr-4 text-gray-500 no-underline hover:no-underline" href="#">&copy; {{ config('app.name', 'Laravel') }} 2019</a>
+                <a class="mr-4 text-gray-600 font-semibold" href="#">About</a>
+                <a class="mr-4 text-gray-600 font-semibold" href="#">Terms and Conditions</a>
+                <a class="mr-4 text-gray-600 font-semibold" href="#">Privacy Policy</a>
             </div>
         </div>
     </main>

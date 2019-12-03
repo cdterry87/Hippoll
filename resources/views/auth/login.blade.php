@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="w-1/2 mx-auto bg-white p-10 rounded border-gray-800 shadow-md">
-        <h2 class="font-smibold text-center mb-6 text-2xl">Login</h2>
+<div class="w-full">
+    <div class="sm:w-3/4 lg:w-1/2 mx-auto bg-white p-10 rounded border-gray-800 shadow-md">
+        <h2 class="font-semibold text-center text-2xl text-gray-600">Login</h2>
+        <hr class="text-gray-300 mt-2 mb-6">
         <form method="POST" action="{{ route('login') }}">
             @csrf
             <div class="mb-4">
@@ -24,7 +25,7 @@
             </div>
             <div class="md:flex md:items-center mb-6">
                 <div class="md:w-1/3">
-                    <label class="md:w-2/3 block text-gray-500 font-bold">
+                    <label class="md:w-2/3 block text-gray-500 font-semibold">
                         <input class="mr-2 leading-tight" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                         <span class="text-sm">
                             Remember Me
@@ -33,10 +34,10 @@
                 </div>
             </div>
             <div class="flex items-center justify-between">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                     Sign In
                 </button>
-                <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
+                <a class="inline-block align-baseline font-semibold text-sm text-blue-500 hover:text-blue-800" href="#">
                     Forgot Password?
                 </a>
             </div>
