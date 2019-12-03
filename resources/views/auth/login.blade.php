@@ -8,17 +8,17 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
             <div class="mb-4">
-            <input class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal" name="email" id="email" type="email" value="{{ old('email') }}" placeholder="Email Address">
+                <input class="bg-white border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal @error('email') border-red-500 @enderror" name="email" id="email" type="email" value="{{ old('email') }}" placeholder="Email Address" required>
                 @error('email')
-                    <span class="text-red-500" role="alert">
+                    <span class="inline-block text-red-500 mt-3" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
             </div>
             <div class="mb-4">
-                <input class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal" name="password" id="password" type="password" placeholder="Password">
+                <input class="bg-white border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal @error('password') border-red-500 @enderror" name="password" id="password" type="password" placeholder="Password" required>
                 @error('password')
-                    <span class="text-red-500" role="alert">
+                    <span class="inline-block text-red-500 mt-3" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
@@ -34,10 +34,10 @@
                 </div>
             </div>
             <div class="flex items-center justify-between">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                     Sign In
                 </button>
-                <a class="inline-block align-baseline font-semibold text-sm text-blue-500 hover:text-blue-800" href="#">
+                <a class="inline-block align-baseline text-sm text-blue-500 hover:text-blue-800" href="#">
                     Forgot Password?
                 </a>
             </div>

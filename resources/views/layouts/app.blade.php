@@ -24,10 +24,10 @@
                         {{ config('app.name', 'Laravel') }}
                     </a>
                     <div class="flex w-1/2 justify-end content-center">
-                        <a class="button inline-block no-underline text-blue-500 hover:text-blue-800 hover:text-underline text-center h-10 p-2 md:h-auto md:p-4" href="login">
+                        <a class="button inline-block no-underline text-blue-500 hover:text-blue-800 hover:text-underline text-center h-10 p-2" href="login">
                             Login
                         </a>
-                        <a class="button inline-block no-underline text-blue-500 hover:text-blue-800 hover:text-underline text-center h-10 p-2 md:h-auto md:p-4 " href="register">
+                        <a class="button bg-blue-500 text-white rounded inline-block text-center h-10 p-2 ml-2" href="register">
                             Register
                         </a>
                     </div>
@@ -36,8 +36,8 @@
 
             @yield('content')
 
-            <div class="w-full pt-24 pt-32 pb-6 text-sm text-center">
-                <a class="mr-4 text-gray-500 no-underline hover:no-underline" href="#">&copy; {{ config('app.name', 'Laravel') }} 2019</a>
+            <div class="w-full pt-24 pt-32 pb-6 text-sm text-center bg-no-repeat bg-left bg-left-top mt-32" style="background-image: url('images/bg.svg'); background-size: 300px;">
+                <span class="mr-4 text-gray-500 no-underline hover:no-underline">&copy; {{ config('app.name', 'Laravel') }} 2019</span>
                 <a class="mr-4 text-gray-600 font-semibold" href="#">About</a>
                 <a class="mr-4 text-gray-600 font-semibold" href="#">Terms and Conditions</a>
                 <a class="mr-4 text-gray-600 font-semibold" href="#">Privacy Policy</a>
