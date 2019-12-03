@@ -10,5 +10,4 @@
         <img src="images/logo.png" id="logo" class="h-64 mx-auto" alt="Hippoll Logo">
     </div>
 </div>
-
 @endsection
