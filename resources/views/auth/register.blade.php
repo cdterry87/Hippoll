@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="w-full">
-    <div class="sm:w-3/4 lg:w-1/2 mx-auto bg-white p-10 rounded border-gray-800 shadow-md">
+    <div class="w-11/12 lg:w-1/2 mx-auto bg-white p-10 rounded border-gray-800 shadow-md">
         <h2 class="font-semibold text-center text-2xl text-gray-600">Register</h2>
         <hr class="text-gray-300 mt-2 mb-6">
         <form method="POST" action="{{ route('register') }}">
@@ -43,13 +43,17 @@
                     </span>
                 @enderror
             </div>
-            <div class="flex items-center justify-between mt-4">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                    Sign Up
-                </button>
-                <a class="inline-block align-baseline text-sm text-blue-500 hover:text-blue-800" href="/login">
-                    Login if you already have an account!
-                </a>
+            <div class="flex items-center justify-between flex-wrap md:flex-no-wrap mt-4">
+                <div class="flex flex-col">
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        Sign Up
+                    </button>
+                </div>
+                <div class="flex flex-row">
+                    <a class="inline-block mt-4 md:mt-2 align-baseline text-sm text-blue-500 hover:text-blue-800" href="/login">
+                        Already have an account? Login!
+                    </a>
+                </div>
             </div>
         </form>
     </div>
