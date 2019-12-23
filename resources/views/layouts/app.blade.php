@@ -17,7 +17,7 @@
 </head>
 <body class="bg-gray-100">
     <main>
-        <div class="pb-14 bg-no-repeat md:bg-right lg:mt-3" style="background-image: url('images/bg.svg'); background-size: 700px;">
+        <div class="pb-14 bg-no-repeat md:bg-right" style="background-image: url('images/bg.svg'); background-size: 700px;">
             <div class="w-full mx-auto px-6 pt-2">
                 <div class="w-full flex items-center justify-between">
                     <a class="flex items-center no-underline hover:no-underline font-bold text-2xl lg:text-4xl"  href="/">
