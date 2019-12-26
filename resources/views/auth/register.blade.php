@@ -3,8 +3,8 @@
 @section('content')
 <div class="w-full mt-4">
     <div class="w-11/12 lg:w-1/2 mx-auto bg-white p-10 rounded border-gray-800 shadow-md">
-        <h2 class="font-semibold text-center text-2xl text-gray-600">Register</h2>
-        <hr class="text-gray-300 mt-2 mb-6">
+        <h2 class="font-semibold text-center text-2xl text-gray-600 mb-2">Register</h2>
+        <h3 class="text-center text-sm text-gray-600 mb-6">And create your first interactive poll!</h3>
         <form method="POST" action="{{ route('register') }}">
             @csrf
             <div class="mb-4">

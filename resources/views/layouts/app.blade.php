@@ -24,9 +24,17 @@
                         {{ config('app.name', 'Laravel') }}
                     </a>
                     <div class="flex w-1/2 justify-end content-center">
-                        <a class="button bg-blue-500 text-white rounded inline-block text-center h-10 py-2 px-4 ml-2" href="register">
-                            Register
-                        </a>
+                        @guest
+                            <a class="text-blue-500 hover:text-blue-700 inline-block h-10 py-2 px-4 ml-2" href="register">
+                                Register
+                            </a>
+                        @endguest
+                        @auth
+                            <form action="{{ route('logout') }}" method="POST">
+                                {{ csrf_field() }}
+                                <button type="submit" class="text-blue-500 hover:text-blue-700 inline-block h-10 py-2 px-4 ml-2">Logout</button>
+                            </form>
+                        @endauth
                     </div>
                 </div>
             </div>
