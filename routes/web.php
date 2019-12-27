@@ -18,3 +18,16 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+// User authenticated routes
+Route::group(['middleware' => 'auth'], function () {
+    // Application api routes
+    Route::prefix('api')->group(function () {
+        // Primary Resources
+        Route::resource('/polls', 'PollController');
+    });
+
+    // Catch-all route
+    Route::get('/{any}', 'HomeController@index')->where('any', '.*');
+});

@@ -19,45 +19,42 @@
     <header>
         <nav class="navbar container" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
-                <a class="is-size-3 has-text-info has-text-weight-bold" href="/">Hippoll</a>
+                <a class="is-size-3 has-text-primary has-text-weight-bold" href="/">Hippoll</a>
                 <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                 </a>
             </div>
-
             <div class="navbar-menu" id="navbar">
                 <div class="navbar-start"></div>
                 <div class="navbar-end">
-                    <div class="navbar-item pr-0">
-                        <div class="buttons">
-                            @guest
-                                <a href="/register" class="button is-info">Register</a>
-                            @endguest
-                            @auth
-                                <form action="{{ route('logout') }}" method="POST">
-                                    {{ csrf_field() }}
-                                    <button type="submit" class="button is-danger">Logout</button>
-                                </form>
-                            @endauth
-                        </div>
+                    <div class="navbar-item">
+                        @guest
+                            <a href="/register" class="has-text-primary">Register</a>
+                        @endguest
+                        @auth
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="button is-danger is-outlined">Logout</button>
+                            </form>
+                        @endauth
                     </div>
                 </div>
             </div>
         </nav>
     </header>
 
-    <div id="content" class="container my-3">
+    <div id="content" class="container my-2">
         @yield('content')
     </div>
 
     <footer id="footer" class="footer">
         <div class="content has-text-centered">
             <span class="mx-1">&copy; {{ config('app.name', 'Laravel') }} 2019</span>
-            <a href="#" class="mx-1 has-text-info">About</a>
-            <a href="#" class="mx-1 has-text-info">Terms and Conditions</a>
-            <a href="#" class="mx-1 has-text-info">Privacy Policy</a>
+            <a href="#" class="mx-1 has-text-primary">About</a>
+            <a href="#" class="mx-1 has-text-primary">Terms and Conditions</a>
+            <a href="#" class="mx-1 has-text-primary">Privacy Policy</a>
         </div>
     </footer>
 </body>

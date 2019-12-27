@@ -39,6 +39,6 @@ class User extends Authenticatable
 
     public function polls()
     {
-        $this->hasMany('App\Poll');
+        return $this->hasMany('App\Poll');
     }
 }

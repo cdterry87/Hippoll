@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Poll;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Poll;
 
 class PollController extends Controller
 {
@@ -14,17 +16,7 @@ class PollController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return response()->json(Auth::user()->polls()->orderBy('created_at', 'desc')->get());
     }
 
     /**
@@ -35,7 +27,17 @@ class PollController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $poll = Poll::create([
+            'title' => $request->title,
+            'details' => $request->details,
+            'user_id' => Auth::user()->id
+        ]);
+
+        return response()->json([
+            'status' => (bool) $poll,
+            'data' => $poll,
+            'message' => $poll ? 'Poll created successfully!' : 'Error creating poll!'
+        ]);
     }
 
     /**

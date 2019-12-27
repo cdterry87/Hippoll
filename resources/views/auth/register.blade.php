@@ -18,7 +18,7 @@
                         <div class="field">
                             <label for="name" class="label">Full Name:</label>
                             <div class="control has-icons-left has-icons-right">
-                                <input class="input is-medium" id="name" type="text" placeholder="Full Name" value="{{ old('name') }}">
+                                <input class="input is-medium" name="name" id="name" type="text" placeholder="Full Name" value="{{ old('name') }}">
                                 <span class="icon is-small is-left">
                                     <i class="fas fa-user-circle"></i>
                                 </span>
@@ -36,7 +36,7 @@
                         <div class="field">
                             <label for="email" class="label">Email:</label>
                             <div class="control has-icons-left has-icons-right">
-                                <input class="input is-medium" id="email" type="email" placeholder="Email Address" value="{{ old('email') }}">
+                                <input class="input is-medium" name="email" id="email" type="email" placeholder="Email Address" value="{{ old('email') }}">
                                 <span class="icon is-small is-left">
                                     <i class="fas fa-envelope"></i>
                                 </span>
@@ -54,7 +54,7 @@
                         <div class="field">
                             <label for="password" class="label">Password:</label>
                             <div class="control has-icons-left has-icons-right">
-                                <input class="input is-medium" id="password" type="password" placeholder="Password">
+                                <input class="input is-medium" name="password" id="password" type="password" placeholder="Password">
                                 <span class="icon is-small is-left">
                                     <i class="fas fa-lock"></i>
                                 </span>
@@ -71,7 +71,7 @@
                         <div class="field">
                             <label for="password_confirmation" class="label">Confirm Password:</label>
                             <div class="control has-icons-left has-icons-right">
-                                <input class="input is-medium" id="password_confirmation" type="password" placeholder="Confirm Password">
+                                <input class="input is-medium" name="password_confirmation" id="password_confirmation" type="password" placeholder="Confirm Password">
                                 <span class="icon is-small is-left">
                                     <i class="fas fa-lock"></i>
                                 </span>
@@ -85,7 +85,7 @@
                             <p class="help is-danger">{{ $message }}</p>
                             @enderror
                         </div>
-                        <div class="flex items-center justify-between">
+                        <div class="flex items-center justify-between mt-2">
                             <button type="submit" class="button is-info">
                                 Register
                             </button>

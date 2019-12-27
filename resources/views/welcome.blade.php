@@ -25,7 +25,7 @@
                                 <div class="field">
                                     <label for="email" class="label">Email:</label>
                                     <div class="control has-icons-left has-icons-right">
-                                        <input class="input is-medium" id="email" type="email" placeholder="Email Address" value="{{ old('email') }}">
+                                        <input class="input is-medium" name="email" id="email" type="email" placeholder="Email Address" value="{{ old('email') }}">
                                         <span class="icon is-small is-left">
                                             <i class="fas fa-envelope"></i>
                                         </span>
@@ -43,7 +43,7 @@
                                 <div class="field">
                                     <label for="password" class="label">Password:</label>
                                     <div class="control has-icons-left has-icons-right">
-                                        <input class="input is-medium" id="password" type="password" placeholder="Password">
+                                        <input class="input is-medium" name="password" id="password" type="password" placeholder="Password">
                                         <span class="icon is-small is-left">
                                             <i class="fas fa-lock"></i>
                                         </span>
@@ -78,9 +78,9 @@
                         @endguest
 
                         @auth
-                        <div class="container">
-                            <h3 class="is-size-4">Manage Your Polls</h3>
-                            <a href="/home" class="button is-primary">Get Started</a>
+                        <div class="container has-text-centered">
+                            <h3 class="is-size-4 my-1">You are logged in!</h3>
+                            <a href="/home" class="button is-primary my-1">Get Started</a>
                         </div>
                         @endauth
                     </div>
