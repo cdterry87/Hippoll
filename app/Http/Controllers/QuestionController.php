@@ -2,31 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Poll;
 use App\Question;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -35,7 +16,16 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $question = Question::create([
+            'question' => $request->question,
+            'poll_id' => $request->poll_id
+        ]);
+
+        return response()->json([
+            'status' => (bool) $question,
+            'data' => $question,
+            'message' => $question ? 'Question added successfully!' : 'Error adding question!'
+        ]);
     }
 
     /**
@@ -46,18 +36,7 @@ class QuestionController extends Controller
      */
     public function show(Question $question)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Question  $question
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Question $question)
-    {
-        //
+        return response()->json($question->where('id', $question->id)->first());
     }
 
     /**
@@ -69,7 +48,18 @@ class QuestionController extends Controller
      */
     public function update(Request $request, Question $question)
     {
-        //
+        if (auth()->id() != $request->user_id) {
+            $status = false;
+        } else {
+            $status = $question->update(
+                $request->only(['quesetion'])
+            );
+        }
+
+        return response()->json([
+            'status' => $status,
+            'message' => $status ? 'Question updated successfully!' : 'Error updating question!'
+        ]);
     }
 
     /**
@@ -80,6 +70,11 @@ class QuestionController extends Controller
      */
     public function destroy(Question $question)
     {
-        //
+        $status = $question->delete();
+
+        return response()->json([
+            'status' => $status,
+            'message' => $status ? 'Question deleted successfully!' : 'Error deleting question!'
+        ]);
     }
 }

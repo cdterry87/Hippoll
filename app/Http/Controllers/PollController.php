@@ -48,18 +48,10 @@ class PollController extends Controller
      */
     public function show(Poll $poll)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Poll  $poll
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Poll $poll)
-    {
-        //
+        if (auth()->id() == $poll->user_id) {
+            return response()->json($poll->where('id', $poll->id)->with('questions')->first());
+        }
+        return false;
     }
 
     /**
@@ -71,7 +63,18 @@ class PollController extends Controller
      */
     public function update(Request $request, Poll $poll)
     {
-        //
+        if (auth()->id() != $request->user_id) {
+            $status = false;
+        } else {
+            $status = $poll->update(
+                $request->only(['title', 'details'])
+            );
+        }
+
+        return response()->json([
+            'status' => $status,
+            'message' => $status ? 'Poll updated successfully!' : 'Error updating poll!'
+        ]);
     }
 
     /**
@@ -82,6 +85,11 @@ class PollController extends Controller
      */
     public function destroy(Poll $poll)
     {
-        //
+        $status = $poll->delete();
+
+        return response()->json([
+            'status' => $status,
+            'message' => $status ? 'Poll deleted successfully!' : 'Error deleting poll!'
+        ]);
     }
 }

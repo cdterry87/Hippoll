@@ -2,7 +2,7 @@
     <div>
         <div class="columns">
             <div class="column is-8 is-offset-2">
-                    <div class="columns my-1 is-mobile">
+                <div class="columns my-1 is-mobile">
                     <div class="column is-6">
                         <h2 class="title">My Polls</h2>
                     </div>
@@ -13,7 +13,7 @@
                 <div class="card">
                     <div class="card-content is-size-5">
                         <section>
-                            <b-table :data="polls" striped mobile-cards paginated :per-page="resultsPerPage" sortable
+                            <b-table :data="polls" striped mobile-cards paginated :per-page="resultsPerPage"
                             :current-page.sync="currentPage"
                             pagination-position="bottom"
                             default-sort-direction="desc"
@@ -31,13 +31,16 @@
                                         <span class="is-hidden">{{ props.row.created_at }}</span>
                                         {{ new Date(props.row.created_at).toLocaleDateString() }}
                                     </b-table-column>
-                                    <b-table-column field="actions" label="Actions" width="100">
-                                        <b-button type="is-warning">View</b-button>
+                                    <b-table-column field="actions" label="Actions" width="100" class="has-text-right">
+                                        <b-button type="is-primary" tag="router-link" icon-left="eye" :to="'/poll/' + props.row.id">View</b-button>
                                     </b-table-column>
                                 </template>
                                 <template slot="empty">
                                     <section class="section">
                                         <div class="content has-text-grey has-text-centered">
+                                            <div class="has-text-centered">
+                                                <b-icon icon="frown" size="is-large"></b-icon>
+                                            </div>
                                             <p>You have not added any polls yet.</p>
                                         </div>
                                     </section>
@@ -54,13 +57,13 @@
                  trap-focus
                  aria-role="dialog"
                  aria-modal>
-            <CreatePollForm @pollCreated="getPolls"></CreatePollForm>
+            <CreatePollForm @pollSaved="getPolls"></CreatePollForm>
         </b-modal>
     </div>
 </template>
 
 <script>
-    import CreatePollForm from './../components/CreatePollForm'
+    import CreatePollForm from './../components/PollForm'
 
     export default {
         name: 'Home',
@@ -88,3 +91,9 @@
         }
     }
 </script>
+
+<style lang="scss" scoped>
+.card {
+    min-height: 480px;
+}
+</style>

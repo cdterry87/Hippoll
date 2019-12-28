@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::prefix('api')->group(function () {
         // Primary Resources
         Route::resource('/polls', 'PollController');
+        Route::resource('/questions', 'QuestionController');
     });
 
     // Catch-all route

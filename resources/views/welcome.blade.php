@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="columns">
-    <div class="column is-half-desktop is-10-mobile is-offset-1-mobile va-center">
+    <div class="column is-half-desktop is-10-mobile is-offset-1-mobile va-center my-3">
         <h1 class="is-size-1 has-text-info mb-1 has-text-weight-bold">Be in the know,<br>Make a poll!</h1>
         <h2 class="is-size-5">Feel like you're missing something?<br>Get to know your users with a simple poll!</h2>
     </div>
@@ -78,7 +78,7 @@
                         @endguest
 
                         @auth
-                        <div class="container has-text-centered">
+                        <div class="container has-text-centered my-3">
                             <h3 class="is-size-4 my-1">You are logged in!</h3>
                             <a href="/home" class="button is-primary my-1">Get Started</a>
                         </div>
