@@ -48,13 +48,13 @@ class QuestionController extends Controller
      */
     public function update(Request $request, Question $question)
     {
-        if (auth()->id() != $request->user_id) {
-            $status = false;
-        } else {
-            $status = $question->update(
-                $request->only(['quesetion'])
-            );
-        }
+        // if (auth()->id() != $request->user_id) {
+        //     $status = false;
+        // } else {
+        $status = $question->update(
+            $request->only(['question'])
+        );
+        // }
 
         return response()->json([
             'status' => $status,

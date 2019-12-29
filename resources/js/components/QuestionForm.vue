@@ -9,7 +9,7 @@
             <div class="modal-card-foot">
                 <b-button @click="$parent.close()" class="card-footer-item">Cancel</b-button>
                 <b-button native-type="submit" type="is-primary" icon-left="check-circle" class="card-footer-item">Save</b-button>
-                <b-button v-if="data" type="is-danger" icon-left="minus-circle" @click="deletePoll" class="card-footer-item">Delete</b-button>
+                <b-button v-if="data" type="is-danger" icon-left="minus-circle" @click="deleteQuestion" class="card-footer-item">Delete</b-button>
             </div>
         </div>
     </form>
@@ -26,15 +26,20 @@
         },
         methods: {
             saveQuestion() {
+                let poll_id = 0
+                let user_id = 0
                 let question = this.question
-                let poll_id = this.poll.id
-                let user_id = this.poll.user_id
+
+                if (this.poll) {
+                    poll_id = this.poll.id
+                    user_id = this.poll.user_id
+                }
 
                 let method = 'post'
                 let url = '/api/questions'
                 if (this.data) {
                     method = 'put'
-                    url = '/api/questions/' + this.question.id
+                    url = '/api/questions/' + this.data.id
                 }
 
                 let data = { question, poll_id, user_id }
@@ -74,7 +79,7 @@
         },
         mounted () {
             if (this.data) {
-                this.question = this.question.question
+                this.question = this.data.question
             }
         },
     }
