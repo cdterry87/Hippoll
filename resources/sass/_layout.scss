@@ -1,3 +1,8 @@
-body, html, .navbar, .footer {
+body, html, .navbar, .navbar-menu, .footer {
     background-color: #fcfcfc !important;
+}
+
+.navbar-menu.is-active {
+    box-shadow: none !important;
+    border-bottom: solid 1px #dedede;
 }
