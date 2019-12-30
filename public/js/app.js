@@ -5108,11 +5108,73 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Account',
   components: {
     Breadcrumbs: _components_Breadcrumbs__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      user: [],
+      password: '',
+      password_confirmation: ''
+    };
+  },
+  methods: {
+    getUser: function getUser() {
+      var _this = this;
+
+      axios.get('/api/user').then(function (response) {
+        _this.user = response.data;
+      });
+    },
+    updateAccount: function updateAccount() {
+      var _this2 = this;
+
+      var name = this.user.name;
+      var email = this.user.email;
+      var username = this.user.username;
+      axios.post('/api/account', {
+        name: name,
+        email: email,
+        username: username
+      }).then(function (response) {
+        _this2.user = response.data.data;
+
+        _this2.$buefy.toast.open({
+          message: response.data.message,
+          type: 'is-success',
+          position: 'is-bottom'
+        });
+      })["catch"](function (error) {
+        this.$buefy.toast.open({
+          message: response.data.message,
+          type: 'is-danger',
+          position: 'is-bottom'
+        });
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getUser();
   }
 });
 
@@ -37816,15 +37878,137 @@ var render = function() {
               [
                 _c(
                   "b-tabs",
-                  { staticClass: "block", attrs: { position: "is-centered" } },
+                  {
+                    staticClass: "block",
+                    attrs: { position: "is-centered", expanded: "" }
+                  },
                   [
-                    _c("b-tab-item", {
-                      attrs: { label: "Settings", icon: "cog" }
-                    }),
+                    _c(
+                      "b-tab-item",
+                      { attrs: { label: "Settings", icon: "cog" } },
+                      [
+                        _c(
+                          "form",
+                          {
+                            staticClass: "ma-1",
+                            on: {
+                              submit: function($event) {
+                                $event.preventDefault()
+                                return _vm.updateAccount($event)
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "b-field",
+                              { attrs: { label: "Full Name" } },
+                              [
+                                _c("b-input", {
+                                  attrs: {
+                                    type: "text",
+                                    placeholder: "Full Name",
+                                    "icon-left": "user-circle",
+                                    required: ""
+                                  },
+                                  model: {
+                                    value: _vm.user.name,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.user, "name", $$v)
+                                    },
+                                    expression: "user.name"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-field",
+                              { attrs: { label: "Email Address" } },
+                              [
+                                _c("b-input", {
+                                  attrs: {
+                                    type: "email",
+                                    placeholder: "Email Address",
+                                    required: ""
+                                  },
+                                  model: {
+                                    value: _vm.user.email,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.user, "email", $$v)
+                                    },
+                                    expression: "user.email"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-field",
+                              {
+                                attrs: {
+                                  label: "Display Name",
+                                  message:
+                                    "Used to create links to your polls (ex. https://hippoll.com/" +
+                                    (_vm.user.username
+                                      ? _vm.user.username.toLowerCase()
+                                      : "your-display-name") +
+                                    "/your-poll-id)",
+                                  type: "is-primary"
+                                }
+                              },
+                              [
+                                _c("b-input", {
+                                  attrs: {
+                                    type: "text",
+                                    minlength: "6",
+                                    maxlength: "30",
+                                    placeholder: "Display Name",
+                                    required: ""
+                                  },
+                                  model: {
+                                    value: _vm.user.username,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.user, "username", $$v)
+                                    },
+                                    expression: "user.username"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              [
+                                _c(
+                                  "b-button",
+                                  {
+                                    staticClass: "card-footer-item",
+                                    attrs: {
+                                      "native-type": "submit",
+                                      type: "is-primary",
+                                      "icon-left": "check-circle"
+                                    }
+                                  },
+                                  [_vm._v("Save")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    ),
                     _vm._v(" "),
-                    _c("b-tab-item", {
-                      attrs: { label: "Security", icon: "lock" }
-                    })
+                    _c(
+                      "b-tab-item",
+                      { attrs: { label: "Security", icon: "lock" } },
+                      [_c("Security")],
+                      1
+                    )
                   ],
                   1
                 )

@@ -28,6 +28,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('/polls', 'PollController');
         Route::resource('/questions', 'QuestionController');
         Route::resource('/responses', 'ResponseController');
+
+        // User account routes
+        Route::get('/user', 'UserController@index');
+        Route::post('/account', 'UserController@account');
+        Route::post('/password', 'UserController@password');
     });
 
     // Catch-all route
