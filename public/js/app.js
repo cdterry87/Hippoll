@@ -5125,6 +5125,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Account',
@@ -5171,6 +5183,39 @@ __webpack_require__.r(__webpack_exports__);
           position: 'is-bottom'
         });
       });
+    },
+    changePassword: function changePassword() {
+      var _this3 = this;
+
+      var password = this.password;
+      var password_confirmation = this.password_confirmation;
+
+      if (!_.isEmpty(password) && !_.isNull(password) && password === password_confirmation) {
+        axios.post('/api/password', {
+          password: password
+        }).then(function (response) {
+          _this3.password = '';
+          _this3.password_confirmation = '';
+
+          _this3.$buefy.toast.open({
+            message: response.data.message,
+            type: 'is-success',
+            position: 'is-bottom'
+          });
+        })["catch"](function (error) {
+          this.$buefy.toast.open({
+            message: response.data.message,
+            type: 'is-danger',
+            position: 'is-bottom'
+          });
+        });
+      } else {
+        this.$buefy.toast.open({
+          message: 'Passwords cannot be blank and must match.',
+          type: 'is-danger',
+          position: 'is-bottom'
+        });
+      }
     }
   },
   mounted: function mounted() {
@@ -37887,6 +37932,10 @@ var render = function() {
                       "b-tab-item",
                       { attrs: { label: "Settings", icon: "cog" } },
                       [
+                        _c("h2", { staticClass: "is-size-5 mb-1" }, [
+                          _vm._v("Account Details")
+                        ]),
+                        _vm._v(" "),
                         _c(
                           "form",
                           {
@@ -37907,7 +37956,7 @@ var render = function() {
                                   attrs: {
                                     type: "text",
                                     placeholder: "Full Name",
-                                    "icon-left": "user-circle",
+                                    icon: "user-circle",
                                     required: ""
                                   },
                                   model: {
@@ -37930,6 +37979,7 @@ var render = function() {
                                   attrs: {
                                     type: "email",
                                     placeholder: "Email Address",
+                                    icon: "envelope",
                                     required: ""
                                   },
                                   model: {
@@ -37964,6 +38014,7 @@ var render = function() {
                                     type: "text",
                                     minlength: "6",
                                     maxlength: "30",
+                                    icon: "globe",
                                     placeholder: "Display Name",
                                     required: ""
                                   },
@@ -37981,6 +38032,7 @@ var render = function() {
                             _vm._v(" "),
                             _c(
                               "div",
+                              { staticClass: "mt-2" },
                               [
                                 _c(
                                   "b-button",
@@ -38006,8 +38058,94 @@ var render = function() {
                     _c(
                       "b-tab-item",
                       { attrs: { label: "Security", icon: "lock" } },
-                      [_c("Security")],
-                      1
+                      [
+                        _c("h2", { staticClass: "is-size-5 mb-1" }, [
+                          _vm._v("Change Password")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "form",
+                          {
+                            staticClass: "ma-1",
+                            on: {
+                              submit: function($event) {
+                                $event.preventDefault()
+                                return _vm.changePassword($event)
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "b-field",
+                              { attrs: { label: "Password" } },
+                              [
+                                _c("b-input", {
+                                  attrs: {
+                                    type: "password",
+                                    placeholder: "Password",
+                                    icon: "lock",
+                                    required: "",
+                                    "password-reveal": ""
+                                  },
+                                  model: {
+                                    value: _vm.password,
+                                    callback: function($$v) {
+                                      _vm.password = $$v
+                                    },
+                                    expression: "password"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-field",
+                              { attrs: { label: "Confirm Password" } },
+                              [
+                                _c("b-input", {
+                                  attrs: {
+                                    type: "password",
+                                    placeholder: "Confirm Password",
+                                    icon: "lock",
+                                    required: "",
+                                    "password-reveal": ""
+                                  },
+                                  model: {
+                                    value: _vm.password_confirmation,
+                                    callback: function($$v) {
+                                      _vm.password_confirmation = $$v
+                                    },
+                                    expression: "password_confirmation"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "mt-2" },
+                              [
+                                _c(
+                                  "b-button",
+                                  {
+                                    staticClass: "card-footer-item",
+                                    attrs: {
+                                      "native-type": "submit",
+                                      type: "is-primary",
+                                      "icon-left": "check-circle"
+                                    }
+                                  },
+                                  [_vm._v("Change Password")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ]
                     )
                   ],
                   1
