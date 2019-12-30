@@ -1,15 +1,15 @@
 <template>
-    <form @submit.prevent="saveQuestion" class="ma-1">
+    <form @submit.prevent="saveResponse" class="ma-1">
         <div class="modal-card">
             <div class="modal-card-body">
-                <b-field label="Question">
-                    <b-input type="text" v-model="question" placeholder="Question" maxlength="255" required></b-input>
+                <b-field label="Response">
+                    <b-input type="text" v-model="response" placeholder="Response" maxlength="255" required></b-input>
                 </b-field>
             </div>
             <div class="modal-card-foot">
                 <b-button @click="$parent.close()" class="card-footer-item">Cancel</b-button>
                 <b-button native-type="submit" type="is-primary" icon-left="check-circle" class="card-footer-item">Save</b-button>
-                <b-button v-if="data" type="is-danger" icon-left="minus-circle" @click="deleteQuestion" class="card-footer-item">Delete</b-button>
+                <b-button v-if="data" type="is-danger" icon-left="minus-circle" @click="deleteResponse" class="card-footer-item">Delete</b-button>
             </div>
         </div>
     </form>
@@ -17,33 +17,33 @@
 
 <script>
     export default {
-        name: 'QuestionForm',
-        props: ['poll', 'data'],
+        name: 'ResponseForm',
+        props: ['question', 'data'],
         data() {
             return {
-                question: '',
+                response: '',
             }
         },
         methods: {
-            saveQuestion() {
-                let poll_id = this.poll.id
-                let user_id = this.poll.user_id
-                let question = this.question
+            saveResponse() {
+                let question_id = this.question.id
+                let user_id = this.question.poll.user_id
+                let response = this.response
 
                 let method = 'post'
-                let url = '/api/questions'
+                let url = '/api/responses'
                 if (this.data) {
                     method = 'put'
-                    url = '/api/questions/' + this.data.id
+                    url = '/api/responses/' + this.data.id
                 }
 
-                let data = { question, poll_id, user_id }
+                let data = { response, question_id, user_id }
 
                 axios({method, url, data})
                 .then(response => {
                     this.reset()
                     this.$parent.close()
-                    this.$emit('questionSaved')
+                    this.$emit('responseSaved')
                     this.$buefy.toast.open({
                         message: response.data.message,
                         type: 'is-success',
@@ -51,30 +51,30 @@
                     })
                 })
             },
-            deleteQuestion() {
+            deleteResponse() {
                 if (this.data) {
-                    axios.delete('/api/questions/' + this.data.id)
+                    axios.delete('/api/responses/' + this.data.id)
                     .then(response => {
                         this.reset()
                         this.$parent.close()
-                        this.$emit('questionSaved')
+                        this.$emit('responseSaved')
                         this.$buefy.toast.open({
                             message: response.data.message,
                             type: 'is-danger',
                             position: 'is-bottom'
                         })
 
-                        this.$router.push('/poll/' + this.data.poll_id)
+                        this.$router.push('/question/' + this.data.question_id)
                     })
                 }
             },
             reset() {
-                this.question = ''
+                this.response = ''
             }
         },
         mounted () {
             if (this.data) {
-                this.question = this.data.question
+                this.response = this.data.response
             }
         },
     }

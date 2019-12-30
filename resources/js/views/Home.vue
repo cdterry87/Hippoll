@@ -41,7 +41,10 @@
                                             <div class="has-text-centered">
                                                 <b-icon icon="frown" size="is-large"></b-icon>
                                             </div>
-                                            <p>You have not added any polls yet.</p>
+                                            <p class="my-1">You have not added any polls yet.</p>
+                                            <p>
+                                                <b-button type="is-success" icon-left="plus" @click="createPollModal = true">Create One Now!</b-button>
+                                            </p>
                                         </div>
                                     </section>
                                 </template>

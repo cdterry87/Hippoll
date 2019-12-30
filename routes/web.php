@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth'], function () {
         // Primary Resources
         Route::resource('/polls', 'PollController');
         Route::resource('/questions', 'QuestionController');
+        Route::resource('/responses', 'ResponseController');
     });
 
     // Catch-all route

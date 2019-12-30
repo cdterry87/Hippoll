@@ -12,11 +12,11 @@ class Question extends Model
 
     public function poll()
     {
-        $this->belongsTo('App\Poll');
+        return $this->belongsTo('App\Poll');
     }
 
     public function responses()
     {
-        $this->hasMany('App\Response');
+        return $this->hasMany('App\Response');
     }
 }

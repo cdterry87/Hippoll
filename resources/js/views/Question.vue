@@ -46,7 +46,15 @@
                  trap-focus
                  aria-role="dialog"
                  aria-modal>
-            <EditQuestionForm :data="question" @questionSaved="getQuestion"></EditQuestionForm>
+            <EditQuestionForm :poll="question.poll" :data="question" @questionSaved="getQuestion"></EditQuestionForm>
+        </b-modal>
+
+        <b-modal :active.sync="addResponseModal"
+                 has-modal-card
+                 trap-focus
+                 aria-role="dialog"
+                 aria-modal>
+            <AddResponseForm :question="question" @responseSaved="getQuestion"></AddResponseForm>
         </b-modal>
     </div>
 </template>
@@ -54,6 +62,7 @@
 <script>
     import Breadcrumbs from './../components/Breadcrumbs'
     import EditQuestionForm from './../components/QuestionForm'
+    import AddResponseForm from './../components/ResponseForm'
 
     export default {
         name: 'Question',
@@ -61,12 +70,14 @@
         components: {
             Breadcrumbs,
             EditQuestionForm,
+            AddResponseForm
         },
         data() {
             return {
                 poll: [],
                 question: [],
                 editQuestionModal: false,
+                addResponseModal: false,
             }
         },
         methods: {

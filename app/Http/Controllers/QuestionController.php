@@ -36,7 +36,7 @@ class QuestionController extends Controller
      */
     public function show(Question $question)
     {
-        return response()->json($question->where('id', $question->id)->first());
+        return response()->json($question->where('id', $question->id)->with('poll')->with('responses')->first());
     }
 
     /**
@@ -48,13 +48,13 @@ class QuestionController extends Controller
      */
     public function update(Request $request, Question $question)
     {
-        // if (auth()->id() != $request->user_id) {
-        //     $status = false;
-        // } else {
-        $status = $question->update(
-            $request->only(['question'])
-        );
-        // }
+        if (auth()->id() != $request->user_id) {
+            $status = false;
+        } else {
+            $status = $question->update(
+                $request->only(['question'])
+            );
+        }
 
         return response()->json([
             'status' => $status,

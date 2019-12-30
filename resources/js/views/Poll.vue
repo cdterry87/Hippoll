@@ -92,7 +92,6 @@
         },
         mounted () {
             this.getPoll()
-            console.info('App currentRoute:', this.$router.currentRoute.name)
         },
     }
 </script>
