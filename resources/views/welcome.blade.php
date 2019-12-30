@@ -4,7 +4,7 @@
 
 <div class="columns">
     <div class="column is-half-desktop is-10-mobile is-offset-1-mobile va-center my-3">
-        <h1 class="is-size-1 has-text-info mb-1 has-text-weight-bold">Be in the know,<br>Make a poll!</h1>
+        <h1 class="is-size-1 has-text-primary mb-1 has-text-weight-bold">Be in the know,<br>Make a poll!</h1>
         <h2 class="is-size-5">Feel like you're missing something?<br>Get to know your users with a simple poll!</h2>
     </div>
     <div class="column is-half-desktop is-10-mobile is-offset-1-mobile">
@@ -66,10 +66,10 @@
                                     </label>
                                 </div>
                                 <div class="mt-2">
-                                    <button type="submit" class="button is-info">
+                                    <button type="submit" class="button is-primary">
                                         Sign In
                                     </button>
-                                    <a class="has-text-info ml-1" href="#">
+                                    <a class="has-text-primary ml-1" href="#">
                                         Forgot Password?
                                     </a>
                                 </div>

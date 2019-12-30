@@ -2,6 +2,7 @@ import Home from './views/Home'
 import Poll from './views/Poll'
 import Question from './views/Question'
 import Response from './views/Response'
+import Account from './views/Account'
 import NotFound from './components/NotFound'
 
 export default [
@@ -27,6 +28,11 @@ export default [
         name: 'response',
         component: Response,
         props: true
+    },
+    {
+        path: '/account',
+        name: 'account',
+        component: Account,
     },
     {
         path: '*',

@@ -2,8 +2,14 @@
 @import "~bulma/sass/utilities/_all";
 
 // Set your colors
-$primary: #4099FF;
+$primary: rgb(61, 134, 218);
 $primary-invert: findColorInvert($primary);
+
+$success: rgb(35, 167, 81);
+$success-invert: findColorInvert($success);
+
+$danger: rgb(219, 40, 76);
+$danger-invert: findColorInvert($danger);
 
 $colors: (
     "white": ($white, $black),

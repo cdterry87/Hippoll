@@ -17,7 +17,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar container" role="navigation" aria-label="main navigation">
+        <nav class="navbar container is-transparent" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <a class="is-size-3 has-text-primary has-text-weight-bold" href="/">Hippoll</a>
                 <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar">
@@ -29,17 +29,38 @@
             <div class="navbar-menu" id="navbar">
                 <div class="navbar-start"></div>
                 <div class="navbar-end">
+                    @guest
+                    <a href="/register" class="navbar-item">
+                        <span class="icon">
+                            <i class="fas fa-user-circle"></i>
+                        </span>
+                        <span>
+                            Register
+                        </span>
+                    </a>
+                    @endguest
+
+                    @auth
+                    <a href="/account" class="navbar-item">
+                        <span class="icon">
+                            <i class="fas fa-user-circle"></i>
+                        </span>
+                        <span>
+                            {{ auth()->user()->name }}
+                        </span>
+                    </a>
                     <div class="navbar-item">
-                        @guest
-                            <a href="/register" class="has-text-primary">Register</a>
-                        @endguest
-                        @auth
-                            <form action="{{ route('logout') }}" method="POST">
-                                @csrf
-                                <button type="submit" class="button is-danger is-outlined">Logout</button>
-                            </form>
-                        @endauth
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="button is-danger is-fullwidth">
+                                <span class="icon">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                </span>
+                                <span>Logout</span>
+                            </button>
+                        </form>
                     </div>
+                    @endauth
                 </div>
             </div>
         </nav>
