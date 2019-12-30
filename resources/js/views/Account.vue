@@ -19,7 +19,7 @@
                                         <b-input type="text" minlength="6" maxlength="30" v-model="user.username" icon="globe" placeholder="Display Name" required></b-input>
                                     </b-field>
                                     <div class="mt-2">
-                                        <b-button native-type="submit" type="is-primary" icon-left="check-circle" class="card-footer-item">Save</b-button>
+                                        <b-button native-type="submit" type="is-primary" icon-left="check-circle" class="card-footer-item">Update Account</b-button>
                                     </div>
                                 </form>
                             </b-tab-item>
