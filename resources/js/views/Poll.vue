@@ -5,6 +5,12 @@
                 <Breadcrumbs />
                 <div class="card">
                     <div class="card-content">
+                        <div class="field">
+                            <b-switch v-model="poll.active" @input="changeStatus" type="is-success">
+                                Active
+                            </b-switch>
+                            <p v-if="!poll.active" class="help is-primary">Toggle this switch to allow others to view/take your poll.</p>
+                        </div>
                         <div class="columns my-1 is-mobile">
                             <div class="column is-6">
                                 <h2 class="title">{{ poll.title }}</h2>
@@ -87,8 +93,25 @@
                 axios.get('/api/polls/' + this.id)
                 .then(response => {
                     this.poll = response.data
+
+                    if (this.poll.active) {
+                        this.poll.active = true
+                    }
                 })
             },
+            changeStatus() {
+                let active = this.poll.active
+                let user_id = this.poll.user_id
+
+                axios.post('/api/status/' + this.id, { active, user_id })
+                .then(response => {
+                    this.$buefy.toast.open({
+                        message: response.data.message,
+                        type: 'is-success',
+                        position: 'is-bottom'
+                    })
+                })
+            }
         },
         mounted () {
             this.getPoll()

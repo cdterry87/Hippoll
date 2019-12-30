@@ -5408,6 +5408,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5432,6 +5438,26 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/polls/' + this.id).then(function (response) {
         _this.poll = response.data;
+
+        if (_this.poll.active) {
+          _this.poll.active = true;
+        }
+      });
+    },
+    changeStatus: function changeStatus() {
+      var _this2 = this;
+
+      var active = this.poll.active;
+      var user_id = this.poll.user_id;
+      axios.post('/api/status/' + this.id, {
+        active: active,
+        user_id: user_id
+      }).then(function (response) {
+        _this2.$buefy.toast.open({
+          message: response.data.message,
+          type: 'is-success',
+          position: 'is-bottom'
+        });
       });
     }
   },
@@ -38452,6 +38478,41 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "card" }, [
                   _c("div", { staticClass: "card-content" }, [
+                    _c(
+                      "div",
+                      { staticClass: "field" },
+                      [
+                        _c(
+                          "b-switch",
+                          {
+                            attrs: { type: "is-success" },
+                            on: { input: _vm.changeStatus },
+                            model: {
+                              value: _vm.poll.active,
+                              callback: function($$v) {
+                                _vm.$set(_vm.poll, "active", $$v)
+                              },
+                              expression: "poll.active"
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            Active\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        !_vm.poll.active
+                          ? _c("p", { staticClass: "help is-primary" }, [
+                              _vm._v(
+                                "Toggle this switch to allow others to view/take your poll."
+                              )
+                            ])
+                          : _vm._e()
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
                     _c("div", { staticClass: "columns my-1 is-mobile" }, [
                       _c("div", { staticClass: "column is-6" }, [
                         _c("h2", { staticClass: "title" }, [

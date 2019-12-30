@@ -77,6 +77,27 @@ class PollController extends Controller
         ]);
     }
 
+    public function changeStatus(Request $request, Poll $poll)
+    {
+        if (auth()->id() != $request->user_id) {
+            $status = false;
+        } else {
+            $status = $poll->update(
+                $request->only(['active'])
+            );
+
+            $message = 'Your poll is inactive.';
+            if ($request->active) {
+                $message = 'Your poll is now active.';
+            }
+        }
+
+        return response()->json([
+            'status' => $status,
+            'message' => $status ? $message : 'Error changing status!'
+        ]);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
