@@ -4676,6 +4676,63 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Breadcrumbs.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Breadcrumbs.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'Breadcrumbs',
+  props: ['poll_id', 'question_id']
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NotFound.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/NotFound.vue?vue&type=script&lang=js& ***!
@@ -5036,7 +5093,118 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_PollForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../components/PollForm */ "./resources/js/components/PollForm.vue");
+/* harmony import */ var _components_Breadcrumbs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../components/Breadcrumbs */ "./resources/js/components/Breadcrumbs.vue");
+/* harmony import */ var _components_PollForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../components/PollForm */ "./resources/js/components/PollForm.vue");
+/* harmony import */ var _components_QuestionForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../components/QuestionForm */ "./resources/js/components/QuestionForm.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'Poll',
+  props: ['id'],
+  components: {
+    Breadcrumbs: _components_Breadcrumbs__WEBPACK_IMPORTED_MODULE_0__["default"],
+    EditPollForm: _components_PollForm__WEBPACK_IMPORTED_MODULE_1__["default"],
+    AddQuestionForm: _components_QuestionForm__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  data: function data() {
+    return {
+      poll: [],
+      editPollModal: false,
+      addQuestionModal: false
+    };
+  },
+  methods: {
+    getPoll: function getPoll() {
+      var _this = this;
+
+      axios.get('/api/polls/' + this.id).then(function (response) {
+        _this.poll = response.data;
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getPoll();
+    console.info('App currentRoute:', this.$router.currentRoute.name);
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Question.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Question.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_Breadcrumbs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../components/Breadcrumbs */ "./resources/js/components/Breadcrumbs.vue");
 /* harmony import */ var _components_QuestionForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../components/QuestionForm */ "./resources/js/components/QuestionForm.vue");
 //
 //
@@ -5091,116 +5259,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Poll',
-  props: ['id'],
-  components: {
-    EditPollForm: _components_PollForm__WEBPACK_IMPORTED_MODULE_0__["default"],
-    AddQuestionForm: _components_QuestionForm__WEBPACK_IMPORTED_MODULE_1__["default"]
-  },
-  data: function data() {
-    return {
-      poll: [],
-      editPollModal: false,
-      addQuestionModal: false
-    };
-  },
-  methods: {
-    getPoll: function getPoll() {
-      var _this = this;
-
-      axios.get('/api/polls/' + this.id).then(function (response) {
-        _this.poll = response.data;
-      });
-    }
-  },
-  mounted: function mounted() {
-    this.getPoll();
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Question.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Question.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_QuestionForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../components/QuestionForm */ "./resources/js/components/QuestionForm.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Question',
   props: ['id'],
   components: {
-    EditQuestionForm: _components_QuestionForm__WEBPACK_IMPORTED_MODULE_0__["default"]
+    Breadcrumbs: _components_Breadcrumbs__WEBPACK_IMPORTED_MODULE_0__["default"],
+    EditQuestionForm: _components_QuestionForm__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
@@ -37010,6 +37076,111 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Breadcrumbs.vue?vue&type=template&id=3f3ce3b5&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Breadcrumbs.vue?vue&type=template&id=3f3ce3b5& ***!
+  \**************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "card mb-1" }, [
+    _c("div", { staticClass: "card-content" }, [
+      _c(
+        "nav",
+        { staticClass: "breadcrumb", attrs: { "aria-label": "breadcrumbs" } },
+        [
+          _c("ul", [
+            _c(
+              "li",
+              [
+                _c("router-link", { attrs: { to: "/home" } }, [
+                  _c("a", [
+                    _c("span", { staticClass: "icon is-small" }, [
+                      _c("i", {
+                        staticClass: "fas fa-home",
+                        attrs: { "aria-hidden": "true" }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("span", [_vm._v("Home")])
+                  ])
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _vm.poll_id &&
+            (_vm.$router.currentRoute.name == "response" ||
+              _vm.$router.currentRoute.name == "question")
+              ? _c(
+                  "li",
+                  [
+                    _c(
+                      "router-link",
+                      { attrs: { to: "/poll/" + _vm.poll_id } },
+                      [
+                        _c("a", [
+                          _c("span", { staticClass: "icon is-small" }, [
+                            _c("i", {
+                              staticClass: "fas fa-poll",
+                              attrs: { "aria-hidden": "true" }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("span", [_vm._v("Poll")])
+                        ])
+                      ]
+                    )
+                  ],
+                  1
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.question_id && _vm.$router.currentRoute.name == "response"
+              ? _c(
+                  "li",
+                  [
+                    _c(
+                      "router-link",
+                      { attrs: { to: "/question/" + _vm.question_id } },
+                      [
+                        _c("a", [
+                          _c("span", { staticClass: "icon is-small" }, [
+                            _c("i", {
+                              staticClass: "fas fa-question-circle",
+                              attrs: { "aria-hidden": "true" }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("span", [_vm._v("Question")])
+                        ])
+                      ]
+                    )
+                  ],
+                  1
+                )
+              : _vm._e()
+          ])
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NotFound.vue?vue&type=template&id=2ce50e5a&":
 /*!***********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/NotFound.vue?vue&type=template&id=2ce50e5a& ***!
@@ -37532,121 +37703,134 @@ var render = function() {
     [
       _vm.poll
         ? _c("div", { staticClass: "columns" }, [
-            _c("div", { staticClass: "column is-8 is-offset-2" }, [
-              _c("div", { staticClass: "card" }, [
-                _c("div", { staticClass: "card-content" }, [
-                  _c("div", { staticClass: "columns my-1 is-mobile" }, [
-                    _c("div", { staticClass: "column is-6" }, [
-                      _c("h2", { staticClass: "title" }, [
-                        _vm._v(_vm._s(_vm.poll.title))
-                      ])
+            _c(
+              "div",
+              { staticClass: "column is-8 is-offset-2" },
+              [
+                _c("Breadcrumbs"),
+                _vm._v(" "),
+                _c("div", { staticClass: "card" }, [
+                  _c("div", { staticClass: "card-content" }, [
+                    _c("div", { staticClass: "columns my-1 is-mobile" }, [
+                      _c("div", { staticClass: "column is-6" }, [
+                        _c("h2", { staticClass: "title" }, [
+                          _vm._v(_vm._s(_vm.poll.title))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "column is-6 has-text-right" },
+                        [
+                          _c(
+                            "b-button",
+                            {
+                              attrs: {
+                                type: "is-primary",
+                                "icon-left": "edit"
+                              },
+                              on: {
+                                click: function($event) {
+                                  _vm.editPollModal = true
+                                }
+                              }
+                            },
+                            [_vm._v("Edit")]
+                          )
+                        ],
+                        1
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(_vm.poll.details) +
+                          "\n                    "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("hr"),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "columns my-1 is-mobile" }, [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "column is-6 has-text-right" },
+                        [
+                          _c(
+                            "b-button",
+                            {
+                              attrs: {
+                                type: "is-success",
+                                "icon-left": "plus"
+                              },
+                              on: {
+                                click: function($event) {
+                                  _vm.addQuestionModal = true
+                                }
+                              }
+                            },
+                            [_vm._v("Add")]
+                          )
+                        ],
+                        1
+                      )
                     ]),
                     _vm._v(" "),
                     _c(
                       "div",
-                      { staticClass: "column is-6 has-text-right" },
-                      [
-                        _c(
-                          "b-button",
-                          {
-                            attrs: { type: "is-primary", "icon-left": "edit" },
-                            on: {
-                              click: function($event) {
-                                _vm.editPollModal = true
-                              }
-                            }
-                          },
-                          [_vm._v("Edit")]
+                      { staticClass: "columns is-multiline" },
+                      _vm._l(_vm.poll.questions, function(question, index) {
+                        return _c(
+                          "div",
+                          { key: question.id, staticClass: "column is-full" },
+                          [
+                            _c("article", { staticClass: "media" }, [
+                              _c("div", { staticClass: "media-content" }, [
+                                _c("div", { staticClass: "content" }, [
+                                  _vm._v(
+                                    "\n                                        " +
+                                      _vm._s(index + 1) +
+                                      ". " +
+                                      _vm._s(question.question) +
+                                      "\n                                    "
+                                  )
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "media-right" },
+                                [
+                                  _c(
+                                    "b-button",
+                                    {
+                                      staticClass: "is-small",
+                                      attrs: {
+                                        tag: "router-link",
+                                        to: "/question/" + question.id,
+                                        type: "is-primary",
+                                        "icon-left": "eye"
+                                      }
+                                    },
+                                    [_vm._v("View")]
+                                  )
+                                ],
+                                1
+                              )
+                            ])
+                          ]
                         )
-                      ],
-                      1
+                      }),
+                      0
                     )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(_vm.poll.details) +
-                        "\n                    "
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "columns my-1 is-mobile" }, [
-                    _vm._m(0),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "column is-6 has-text-right" },
-                      [
-                        _c(
-                          "b-button",
-                          {
-                            attrs: { type: "is-success", "icon-left": "plus" },
-                            on: {
-                              click: function($event) {
-                                _vm.addQuestionModal = true
-                              }
-                            }
-                          },
-                          [_vm._v("Add")]
-                        )
-                      ],
-                      1
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "columns is-multiline" },
-                    _vm._l(_vm.poll.questions, function(question, index) {
-                      return _c(
-                        "div",
-                        { key: question.id, staticClass: "column is-full" },
-                        [
-                          _c("article", { staticClass: "media" }, [
-                            _c("div", { staticClass: "media-content" }, [
-                              _c("div", { staticClass: "content" }, [
-                                _vm._v(
-                                  "\n                                        " +
-                                    _vm._s(index + 1) +
-                                    ". " +
-                                    _vm._s(question.question) +
-                                    "\n                                    "
-                                )
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "media-right" },
-                              [
-                                _c(
-                                  "b-button",
-                                  {
-                                    staticClass: "is-small",
-                                    attrs: {
-                                      tag: "router-link",
-                                      to: "/question/" + question.id,
-                                      type: "is-primary",
-                                      "icon-left": "eye"
-                                    }
-                                  },
-                                  [_vm._v("View")]
-                                )
-                              ],
-                              1
-                            )
-                          ])
-                        ]
-                      )
-                    }),
-                    0
-                  )
+                  ])
                 ])
-              ])
-            ])
+              ],
+              1
+            )
           ])
         : _vm._e(),
       _vm._v(" "),
@@ -37739,113 +37923,126 @@ var render = function() {
     [
       _vm.question
         ? _c("div", { staticClass: "columns" }, [
-            _c("div", { staticClass: "column is-8 is-offset-2" }, [
-              _c("div", { staticClass: "card" }, [
-                _c("div", { staticClass: "card-content" }, [
-                  _c("div", { staticClass: "columns my-1 is-mobile" }, [
-                    _c("div", { staticClass: "column is-6" }, [
-                      _c("h2", { staticClass: "title" }, [
-                        _vm._v(_vm._s(_vm.question.question))
-                      ])
+            _c(
+              "div",
+              { staticClass: "column is-8 is-offset-2" },
+              [
+                _c("Breadcrumbs", { attrs: { poll_id: _vm.question.poll_id } }),
+                _vm._v(" "),
+                _c("div", { staticClass: "card" }, [
+                  _c("div", { staticClass: "card-content" }, [
+                    _c("div", { staticClass: "columns my-1 is-mobile" }, [
+                      _c("div", { staticClass: "column is-6" }, [
+                        _c("h2", { staticClass: "title" }, [
+                          _vm._v(_vm._s(_vm.question.question))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "column is-6 has-text-right" },
+                        [
+                          _c(
+                            "b-button",
+                            {
+                              attrs: {
+                                type: "is-primary",
+                                "icon-left": "edit"
+                              },
+                              on: {
+                                click: function($event) {
+                                  _vm.editQuestionModal = true
+                                }
+                              }
+                            },
+                            [_vm._v("Edit")]
+                          )
+                        ],
+                        1
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("hr"),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "columns my-1 is-mobile" }, [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "column is-6 has-text-right" },
+                        [
+                          _c(
+                            "b-button",
+                            {
+                              attrs: {
+                                type: "is-success",
+                                "icon-left": "plus"
+                              },
+                              on: {
+                                click: function($event) {
+                                  _vm.addResponseModal = true
+                                }
+                              }
+                            },
+                            [_vm._v("Add")]
+                          )
+                        ],
+                        1
+                      )
                     ]),
                     _vm._v(" "),
                     _c(
                       "div",
-                      { staticClass: "column is-6 has-text-right" },
-                      [
-                        _c(
-                          "b-button",
-                          {
-                            attrs: { type: "is-primary", "icon-left": "edit" },
-                            on: {
-                              click: function($event) {
-                                _vm.editQuestionModal = true
-                              }
-                            }
-                          },
-                          [_vm._v("Edit")]
+                      { staticClass: "columns is-multiline" },
+                      _vm._l(_vm.question.responses, function(response, index) {
+                        return _c(
+                          "div",
+                          { key: response.id, staticClass: "column is-full" },
+                          [
+                            _c("article", { staticClass: "media" }, [
+                              _c("div", { staticClass: "media-content" }, [
+                                _c("div", { staticClass: "content" }, [
+                                  _vm._v(
+                                    "\n                                        " +
+                                      _vm._s(index + 1) +
+                                      ". " +
+                                      _vm._s(response.response) +
+                                      "\n                                    "
+                                  )
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "media-right" },
+                                [
+                                  _c(
+                                    "b-button",
+                                    {
+                                      staticClass: "is-small",
+                                      attrs: {
+                                        tag: "router-link",
+                                        to: "/response/" + response.id,
+                                        type: "is-primary",
+                                        "icon-left": "eye"
+                                      }
+                                    },
+                                    [_vm._v("View")]
+                                  )
+                                ],
+                                1
+                              )
+                            ])
+                          ]
                         )
-                      ],
-                      1
+                      }),
+                      0
                     )
-                  ]),
-                  _vm._v(" "),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "columns my-1 is-mobile" }, [
-                    _vm._m(0),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "column is-6 has-text-right" },
-                      [
-                        _c(
-                          "b-button",
-                          {
-                            attrs: { type: "is-success", "icon-left": "plus" },
-                            on: {
-                              click: function($event) {
-                                _vm.addResponseModal = true
-                              }
-                            }
-                          },
-                          [_vm._v("Add")]
-                        )
-                      ],
-                      1
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "columns is-multiline" },
-                    _vm._l(_vm.question.responses, function(response, index) {
-                      return _c(
-                        "div",
-                        { key: response.id, staticClass: "column is-full" },
-                        [
-                          _c("article", { staticClass: "media" }, [
-                            _c("div", { staticClass: "media-content" }, [
-                              _c("div", { staticClass: "content" }, [
-                                _vm._v(
-                                  "\n                                        " +
-                                    _vm._s(index + 1) +
-                                    ". " +
-                                    _vm._s(response.response) +
-                                    "\n                                    "
-                                )
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "media-right" },
-                              [
-                                _c(
-                                  "b-button",
-                                  {
-                                    staticClass: "is-small",
-                                    attrs: {
-                                      tag: "router-link",
-                                      to: "/response/" + response.id,
-                                      type: "is-primary",
-                                      "icon-left": "eye"
-                                    }
-                                  },
-                                  [_vm._v("View")]
-                                )
-                              ],
-                              1
-                            )
-                          ])
-                        ]
-                      )
-                    }),
-                    0
-                  )
+                  ])
                 ])
-              ])
-            ])
+              ],
+              1
+            )
           ])
         : _vm._e(),
       _vm._v(" "),
@@ -50177,6 +50374,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_template_id_332fccf4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_template_id_332fccf4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Breadcrumbs.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/components/Breadcrumbs.vue ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Breadcrumbs_vue_vue_type_template_id_3f3ce3b5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Breadcrumbs.vue?vue&type=template&id=3f3ce3b5& */ "./resources/js/components/Breadcrumbs.vue?vue&type=template&id=3f3ce3b5&");
+/* harmony import */ var _Breadcrumbs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Breadcrumbs.vue?vue&type=script&lang=js& */ "./resources/js/components/Breadcrumbs.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Breadcrumbs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Breadcrumbs_vue_vue_type_template_id_3f3ce3b5___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Breadcrumbs_vue_vue_type_template_id_3f3ce3b5___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Breadcrumbs.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Breadcrumbs.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/Breadcrumbs.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Breadcrumbs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Breadcrumbs.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Breadcrumbs.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Breadcrumbs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Breadcrumbs.vue?vue&type=template&id=3f3ce3b5&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/Breadcrumbs.vue?vue&type=template&id=3f3ce3b5& ***!
+  \********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Breadcrumbs_vue_vue_type_template_id_3f3ce3b5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Breadcrumbs.vue?vue&type=template&id=3f3ce3b5& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Breadcrumbs.vue?vue&type=template&id=3f3ce3b5&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Breadcrumbs_vue_vue_type_template_id_3f3ce3b5___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Breadcrumbs_vue_vue_type_template_id_3f3ce3b5___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

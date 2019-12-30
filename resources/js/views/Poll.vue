@@ -2,6 +2,7 @@
     <div>
         <div class="columns" v-if="poll">
             <div class="column is-8 is-offset-2">
+                <Breadcrumbs />
                 <div class="card">
                     <div class="card-content">
                         <div class="columns my-1 is-mobile">
@@ -62,6 +63,7 @@
 </template>
 
 <script>
+    import Breadcrumbs from './../components/Breadcrumbs'
     import EditPollForm from './../components/PollForm'
     import AddQuestionForm from './../components/QuestionForm'
 
@@ -69,6 +71,7 @@
         name: 'Poll',
         props: ['id'],
         components: {
+            Breadcrumbs,
             EditPollForm,
             AddQuestionForm,
         },
@@ -89,6 +92,7 @@
         },
         mounted () {
             this.getPoll()
+            console.info('App currentRoute:', this.$router.currentRoute.name)
         },
     }
 </script>

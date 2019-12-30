@@ -2,6 +2,7 @@
     <div>
         <div class="columns" v-if="question">
             <div class="column is-8 is-offset-2">
+                <Breadcrumbs :poll_id="question.poll_id" />
                 <div class="card">
                     <div class="card-content">
                         <div class="columns my-1 is-mobile">
@@ -51,12 +52,14 @@
 </template>
 
 <script>
+    import Breadcrumbs from './../components/Breadcrumbs'
     import EditQuestionForm from './../components/QuestionForm'
 
     export default {
         name: 'Question',
         props: ['id'],
         components: {
+            Breadcrumbs,
             EditQuestionForm,
         },
         data() {
