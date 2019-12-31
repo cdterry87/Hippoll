@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +16,13 @@
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/p/{username}/{poll}', function () {
+    return view('poll');
+});
+Route::prefix('api')->group(function () {
+    Route::get('/takepoll/{username}/{poll_id}', 'PollController@takepoll');
 });
 
 Auth::routes();
@@ -31,9 +41,6 @@ Route::group(['middleware' => 'auth'], function () {
         // Extra routes
         Route::post('/status/{poll}', 'PollController@changeStatus');
 
-        // User routes
-        Route::get('/takepoll/{username}/{poll_id}', 'PollController@takepoll');
-
         // User account routes
         Route::get('/user', 'UserController@index');
         Route::post('/account', 'UserController@account');
@@ -41,5 +48,5 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     // Catch-all route
-    Route::get('/{any}', 'HomeController@index')->where('any', '.*');
+    // Route::get('/{any}', 'HomeController@index')->where('any', '.*');
 });
