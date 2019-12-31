@@ -48,5 +48,5 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     // Catch-all route
-    // Route::get('/{any}', 'HomeController@index')->where('any', '.*');
+    Route::get('/{any}', 'HomeController@index')->where('any', '.*');
 });
