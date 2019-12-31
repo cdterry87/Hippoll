@@ -55,20 +55,6 @@ class PollController extends Controller
         return false;
     }
 
-    public function takepoll(Request $request)
-    {
-        $user = new User;
-        $user_id = $user->where('username', $request->username)->first()->id;
-
-        $poll = new Poll;
-
-        return response()->json($poll->where([
-            ['active', 1],
-            ['user_id', $user_id],
-            ['id', $request->poll_id],
-        ])->with('questions.responses')->first());
-    }
-
     /**
      * Update the specified resource in storage.
      *
