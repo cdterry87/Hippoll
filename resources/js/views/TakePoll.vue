@@ -1,7 +1,19 @@
 <template>
     <div class="columns" v-if="poll">
         <div class="column is-8 is-offset-2">
-            <b-steps v-model="activeStep" :has-navigation="hasNavigation">
+            <div class="card" v-if="activeStep > poll.questions.length">
+                <div class="card-content">
+                    <div class="has-text-centered">
+                        <h2 class="title is-size-4">
+                            You have successfully completed this poll.
+                        </h2>
+                        <h2 class="title is-size-5">
+                            Thank you for participating!
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <b-steps v-model="activeStep" :has-navigation="hasNavigation" v-else>
                 <b-step-item label="Start">
                     <div class="card">
                         <div class="card-content">
@@ -17,7 +29,7 @@
                         </div>
                     </div>
                 </b-step-item>
-                <b-step-item :label="'Question #' + (questionIndex + 1)" v-for="(question, questionIndex) in poll.questions" :key="questionIndex">
+                <b-step-item :label="'#' + (questionIndex + 1)" v-for="(question, questionIndex) in poll.questions" :key="questionIndex" icon="question-circle">
                     <div class="card" >
                         <div class="card-content">
                             <h2 class="title is-size-5 has-text-centered">{{ question.question }}</h2>
