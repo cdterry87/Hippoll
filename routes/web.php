@@ -22,7 +22,7 @@ Route::get('/p/{username}/{poll}', function () {
     return view('poll');
 });
 Route::prefix('api')->group(function () {
-    Route::get('/takepoll/{username}/{poll_id}', 'PollController@takepoll');
+    Route::get('/takepoll/{username}/{poll_id}', 'TakePollController@index');
 });
 
 Auth::routes();
