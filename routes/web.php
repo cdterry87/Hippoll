@@ -19,7 +19,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
 // User authenticated routes
 Route::group(['middleware' => 'auth'], function () {
     // Application api routes

@@ -63,9 +63,10 @@ class PollController extends Controller
         $poll = new Poll;
 
         return response()->json($poll->where([
+            ['active', 1],
             ['user_id', $user_id],
             ['id', $request->poll_id],
-        ])->with('questions')->first());
+        ])->with('questions.responses')->first());
     }
 
     /**
