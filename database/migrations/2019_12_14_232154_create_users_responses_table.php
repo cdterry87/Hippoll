@@ -19,6 +19,7 @@ class CreateUsersResponsesTable extends Migration
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
             $table->bigInteger('response_id')->unsigned();
             $table->foreign('response_id')->references('id')->on('responses')->onDelete('cascade');
+            $table->string('ip');
             $table->timestamps();
         });
     }
