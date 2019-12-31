@@ -29,8 +29,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('/questions', 'QuestionController');
         Route::resource('/responses', 'ResponseController');
 
-        // Extra resources
+        // Extra routes
         Route::post('/status/{poll}', 'PollController@changeStatus');
+
+        // User routes
+        Route::get('/takepoll/{username}/{poll_id}', 'PollController@takepoll');
 
         // User account routes
         Route::get('/user', 'UserController@index');

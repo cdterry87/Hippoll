@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Poll;
+use App\User;
 
 class PollController extends Controller
 {
@@ -52,6 +53,19 @@ class PollController extends Controller
             return response()->json($poll->where('id', $poll->id)->with('questions')->first());
         }
         return false;
+    }
+
+    public function takepoll(Request $request)
+    {
+        $user = new User;
+        $user_id = $user->where('username', $request->username)->first()->id;
+
+        $poll = new Poll;
+
+        return response()->json($poll->where([
+            ['user_id', $user_id],
+            ['id', $request->poll_id],
+        ])->with('questions')->first());
     }
 
     /**
