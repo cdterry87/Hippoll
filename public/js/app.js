@@ -38514,15 +38514,15 @@ var render = function() {
                     ),
                     _vm._v(" "),
                     _c("div", { staticClass: "columns my-1 is-mobile" }, [
-                      _c("div", { staticClass: "column is-6" }, [
-                        _c("h2", { staticClass: "title" }, [
+                      _c("div", { staticClass: "column is-8" }, [
+                        _c("h2", { staticClass: "title is-size-4" }, [
                           _vm._v(_vm._s(_vm.poll.title))
                         ])
                       ]),
                       _vm._v(" "),
                       _c(
                         "div",
-                        { staticClass: "column is-6 has-text-right" },
+                        { staticClass: "column is-4 has-text-right" },
                         [
                           _c(
                             "b-button",
@@ -38695,7 +38695,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "column is-6" }, [
-      _c("h3", { staticClass: "is-size-4" }, [_vm._v("Questions")])
+      _c("h3", { staticClass: "title is-size-5" }, [_vm._v("Questions")])
     ])
   }
 ]
@@ -38734,15 +38734,15 @@ var render = function() {
                 _c("div", { staticClass: "card" }, [
                   _c("div", { staticClass: "card-content" }, [
                     _c("div", { staticClass: "columns my-1 is-mobile" }, [
-                      _c("div", { staticClass: "column is-6" }, [
-                        _c("h2", { staticClass: "title" }, [
+                      _c("div", { staticClass: "column is-8" }, [
+                        _c("h2", { staticClass: "title is-size-4" }, [
                           _vm._v(_vm._s(_vm.question.question))
                         ])
                       ]),
                       _vm._v(" "),
                       _c(
                         "div",
-                        { staticClass: "column is-6 has-text-right" },
+                        { staticClass: "column is-4 has-text-right" },
                         [
                           _c(
                             "b-button",
@@ -38907,7 +38907,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "column is-6" }, [
-      _c("h3", { staticClass: "is-size-4" }, [_vm._v("Responses")])
+      _c("h3", { staticClass: "title is-size-5" }, [_vm._v("Responses")])
     ])
   }
 ]
@@ -38953,15 +38953,15 @@ var render = function() {
                 _c("div", { staticClass: "card" }, [
                   _c("div", { staticClass: "card-content" }, [
                     _c("div", { staticClass: "columns my-1 is-mobile" }, [
-                      _c("div", { staticClass: "column is-6" }, [
-                        _c("h2", { staticClass: "title" }, [
+                      _c("div", { staticClass: "column is-8" }, [
+                        _c("h2", { staticClass: "title is-size-4" }, [
                           _vm._v(_vm._s(_vm.response.response))
                         ])
                       ]),
                       _vm._v(" "),
                       _c(
                         "div",
-                        { staticClass: "column is-6 has-text-right" },
+                        { staticClass: "column is-4 has-text-right" },
                         [
                           _c(
                             "b-button",

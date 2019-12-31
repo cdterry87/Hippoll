@@ -6,10 +6,10 @@
                 <div class="card">
                     <div class="card-content">
                         <div class="columns my-1 is-mobile">
-                            <div class="column is-6">
-                                <h2 class="title">{{ response.response }}</h2>
+                            <div class="column is-8">
+                                <h2 class="title is-size-4">{{ response.response }}</h2>
                             </div>
-                            <div class="column is-6 has-text-right">
+                            <div class="column is-4 has-text-right">
                                 <b-button type="is-primary" icon-left="edit" @click="editResponseModal = true">Edit</b-button>
                             </div>
                         </div>

@@ -12,10 +12,10 @@
                             <p v-if="!poll.active" class="help is-primary">Toggle this switch to allow others to view/take your poll.</p>
                         </div>
                         <div class="columns my-1 is-mobile">
-                            <div class="column is-6">
-                                <h2 class="title">{{ poll.title }}</h2>
+                            <div class="column is-8">
+                                <h2 class="title is-size-4">{{ poll.title }}</h2>
                             </div>
-                            <div class="column is-6 has-text-right">
+                            <div class="column is-4 has-text-right">
                                 <b-button type="is-primary" icon-left="edit" @click="editPollModal = true">Edit</b-button>
                             </div>
                         </div>
@@ -25,7 +25,7 @@
                         <hr>
                         <div class="columns my-1 is-mobile">
                             <div class="column is-6">
-                                <h3 class="is-size-4">Questions</h3>
+                                <h3 class="title is-size-5">Questions</h3>
                             </div>
                             <div class="column is-6 has-text-right">
                                 <b-button type="is-success" icon-left="plus" @click="addQuestionModal = true">Add</b-button>

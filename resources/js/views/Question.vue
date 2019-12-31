@@ -6,17 +6,17 @@
                 <div class="card">
                     <div class="card-content">
                         <div class="columns my-1 is-mobile">
-                            <div class="column is-6">
-                                <h2 class="title">{{ question.question }}</h2>
+                            <div class="column is-8">
+                                <h2 class="title is-size-4">{{ question.question }}</h2>
                             </div>
-                            <div class="column is-6 has-text-right">
+                            <div class="column is-4 has-text-right">
                                 <b-button type="is-primary" icon-left="edit" @click="editQuestionModal = true">Edit</b-button>
                             </div>
                         </div>
                         <hr>
                         <div class="columns my-1 is-mobile">
                             <div class="column is-6">
-                                <h3 class="is-size-4">Responses</h3>
+                                <h3 class="title is-size-5">Responses</h3>
                             </div>
                             <div class="column is-6 has-text-right">
                                 <b-button type="is-success" icon-left="plus" @click="addResponseModal = true">Add</b-button>
