@@ -5761,6 +5761,13 @@ __webpack_require__.r(__webpack_exports__);
           _this.poll = false;
         }
       });
+    },
+    responseError: function responseError() {
+      this.$buefy.toast.open({
+        message: 'You must select a response to continue to the next question.',
+        type: 'is-danger',
+        position: 'is-bottom'
+      });
     }
   },
   mounted: function mounted() {
@@ -39325,7 +39332,9 @@ var render = function() {
                                         "card-footer-item is-success",
                                       on: {
                                         click: function($event) {
-                                          _vm.activeStep++
+                                          _vm.responses[question.id]
+                                            ? _vm.activeStep++
+                                            : _vm.responseError()
                                         }
                                       }
                                     },

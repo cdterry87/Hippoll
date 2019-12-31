@@ -49,7 +49,7 @@
                                         </span>
                                         <span class="ml-1">Prev</span>
                                     </a>
-                                    <a class="card-footer-item is-success" @click="activeStep++">
+                                    <a class="card-footer-item is-success" @click="(responses[question.id]) ? activeStep++ : responseError()">
                                         <span class="mr-1">Next</span>
                                         <span class="icon is-small is-right">
                                             <i class="fas fa-angle-double-right"></i>
@@ -100,6 +100,13 @@
                     if (_.isEmpty(this.poll)) {
                         this.poll = false
                     }
+                })
+            },
+            responseError() {
+                this.$buefy.toast.open({
+                    message: 'You must select a response to continue to the next question.',
+                    type: 'is-danger',
+                    position: 'is-bottom'
                 })
             }
         },
