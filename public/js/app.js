@@ -5762,6 +5762,13 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
+    responseSelected: function responseSelected(question_id, response_id) {
+      axios.post('/api/selectresponse/', {
+        question_id: question_id,
+        response_id: response_id
+      }).then(function (response) {// Save responses to local storage
+      });
+    },
     responseError: function responseError() {
       this.$buefy.toast.open({
         message: 'You must select a response to continue to the next question.',
@@ -5771,7 +5778,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    this.getPoll();
+    this.getPoll(); // Load responses from localstorage so they can automatically be selected if user has already responded
   }
 });
 
@@ -39269,6 +39276,14 @@ var render = function() {
                                             {
                                               attrs: {
                                                 "native-value": response.id
+                                              },
+                                              on: {
+                                                input: function($event) {
+                                                  return _vm.responseSelected(
+                                                    question.id,
+                                                    response.id
+                                                  )
+                                                }
                                               },
                                               model: {
                                                 value:

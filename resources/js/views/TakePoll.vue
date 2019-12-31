@@ -38,7 +38,7 @@
 
                                     <div class="mt-2 mb-1">
                                         <div class="block" v-for="(response, responseIndex) in question.responses" :key="responseIndex">
-                                            <b-radio v-model="responses[question.id]" :native-value="response.id">{{ response.response }}</b-radio>
+                                            <b-radio @input="responseSelected(question.id, response.id)" v-model="responses[question.id]" :native-value="response.id">{{ response.response }}</b-radio>
                                         </div>
                                     </div>
                                 </div>
@@ -102,6 +102,12 @@
                     }
                 })
             },
+            responseSelected(question_id, response_id) {
+                axios.post('/api/selectresponse/', { question_id, response_id })
+                .then(response => {
+                    // Save responses to local storage
+                })
+            },
             responseError() {
                 this.$buefy.toast.open({
                     message: 'You must select a response to continue to the next question.',
@@ -112,6 +118,7 @@
         },
         mounted () {
             this.getPoll()
+            // Load responses from localstorage so they can automatically be selected if user has already responded
         },
     }
 </script>
