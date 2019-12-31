@@ -5721,6 +5721,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'TakePoll',
   props: ['username', 'id'],
@@ -5738,6 +5756,10 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/takepoll/' + this.username + '/' + this.id).then(function (response) {
         _this.poll = response.data;
+
+        if (_.isEmpty(_this.poll)) {
+          _this.poll = false;
+        }
       });
     }
   },
@@ -39139,196 +39161,208 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.poll
-    ? _c("div", { staticClass: "columns" }, [
-        _c(
-          "div",
-          { staticClass: "column is-8 is-offset-2" },
-          [
-            _vm.activeStep > _vm.poll.questions.length
-              ? _c("div", { staticClass: "card" }, [_vm._m(0)])
-              : _c(
-                  "b-steps",
-                  {
-                    attrs: { "has-navigation": _vm.hasNavigation },
-                    model: {
-                      value: _vm.activeStep,
-                      callback: function($$v) {
-                        _vm.activeStep = $$v
+  return _c("div", [
+    _c("div", { staticClass: "columns" }, [
+      _c("div", { staticClass: "column is-8 is-offset-2" }, [
+        _vm.poll
+          ? _c(
+              "div",
+              [
+                _vm.poll.questions && _vm.activeStep > _vm.poll.questions.length
+                  ? _c("div", { staticClass: "card" }, [_vm._m(0)])
+                  : _c(
+                      "b-steps",
+                      {
+                        attrs: { "has-navigation": _vm.hasNavigation },
+                        model: {
+                          value: _vm.activeStep,
+                          callback: function($$v) {
+                            _vm.activeStep = $$v
+                          },
+                          expression: "activeStep"
+                        }
                       },
-                      expression: "activeStep"
-                    }
-                  },
-                  [
-                    _c("b-step-item", { attrs: { label: "Start" } }, [
-                      _c("div", { staticClass: "card" }, [
-                        _c("div", { staticClass: "card-content" }, [
-                          _c("div", { staticClass: "has-text-centered" }, [
-                            _c("h1", { staticClass: "title is-size-4" }, [
-                              _vm._v(_vm._s(_vm.poll.title))
-                            ]),
-                            _vm._v(" "),
-                            _c("p", { staticClass: "my-1" }, [
-                              _vm._v(
-                                "\n                                " +
-                                  _vm._s(_vm.poll.details) +
-                                  "\n                            "
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("p", { staticClass: "mt-2" }, [
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "button is-primary",
-                                  on: {
-                                    click: function($event) {
-                                      _vm.activeStep++
-                                    }
-                                  }
-                                },
-                                [_vm._v("Begin Poll")]
-                              )
-                            ])
-                          ])
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _vm._l(_vm.poll.questions, function(
-                      question,
-                      questionIndex
-                    ) {
-                      return _c(
-                        "b-step-item",
-                        {
-                          key: questionIndex,
-                          attrs: {
-                            label: "#" + (questionIndex + 1),
-                            icon: "question-circle"
-                          }
-                        },
-                        [
+                      [
+                        _c("b-step-item", { attrs: { label: "Start" } }, [
                           _c("div", { staticClass: "card" }, [
                             _c("div", { staticClass: "card-content" }, [
-                              _c(
-                                "h2",
-                                {
-                                  staticClass:
-                                    "title is-size-5 has-text-centered"
-                                },
-                                [_vm._v(_vm._s(question.question))]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "mt-2 mb-1" },
-                                _vm._l(question.responses, function(
-                                  response,
-                                  responseIndex
-                                ) {
-                                  return _c(
-                                    "div",
+                              _c("div", { staticClass: "has-text-centered" }, [
+                                _c("h1", { staticClass: "title is-size-4" }, [
+                                  _vm._v(_vm._s(_vm.poll.title))
+                                ]),
+                                _vm._v(" "),
+                                _c("p", { staticClass: "my-1" }, [
+                                  _vm._v(
+                                    "\n                                        " +
+                                      _vm._s(_vm.poll.details) +
+                                      "\n                                    "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("p", { staticClass: "mt-2" }, [
+                                  _c(
+                                    "button",
                                     {
-                                      key: responseIndex,
-                                      staticClass: "block"
+                                      staticClass: "button is-primary",
+                                      on: {
+                                        click: function($event) {
+                                          _vm.activeStep++
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Begin Poll")]
+                                  )
+                                ])
+                              ])
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.poll.questions, function(
+                          question,
+                          questionIndex
+                        ) {
+                          return _c(
+                            "b-step-item",
+                            {
+                              key: questionIndex,
+                              attrs: {
+                                label: "#" + (questionIndex + 1),
+                                icon: "question-circle"
+                              }
+                            },
+                            [
+                              _c("div", { staticClass: "card" }, [
+                                _c("div", { staticClass: "card-content" }, [
+                                  _c(
+                                    "h2",
+                                    {
+                                      staticClass:
+                                        "title is-size-5 has-text-centered"
+                                    },
+                                    [_vm._v(_vm._s(question.question))]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "mt-2 mb-1" },
+                                    _vm._l(question.responses, function(
+                                      response,
+                                      responseIndex
+                                    ) {
+                                      return _c(
+                                        "div",
+                                        {
+                                          key: responseIndex,
+                                          staticClass: "block"
+                                        },
+                                        [
+                                          _c(
+                                            "b-radio",
+                                            {
+                                              attrs: {
+                                                "native-value": response.id
+                                              },
+                                              model: {
+                                                value:
+                                                  _vm.responses[question.id],
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.responses,
+                                                    question.id,
+                                                    $$v
+                                                  )
+                                                },
+                                                expression:
+                                                  "responses[question.id]"
+                                              }
+                                            },
+                                            [_vm._v(_vm._s(response.response))]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    }),
+                                    0
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "card-footer" }, [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "card-footer-item is-light",
+                                      on: {
+                                        click: function($event) {
+                                          _vm.activeStep--
+                                        }
+                                      }
                                     },
                                     [
                                       _c(
-                                        "b-radio",
+                                        "span",
                                         {
-                                          attrs: {
-                                            "native-value": response.id
-                                          },
-                                          model: {
-                                            value: _vm.responses[question.id],
-                                            callback: function($$v) {
-                                              _vm.$set(
-                                                _vm.responses,
-                                                question.id,
-                                                $$v
-                                              )
-                                            },
-                                            expression: "responses[question.id]"
-                                          }
+                                          staticClass: "icon is-small is-left"
                                         },
-                                        [_vm._v(_vm._s(response.response))]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                }),
-                                0
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "card-footer" }, [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "card-footer-item is-light",
-                                  on: {
-                                    click: function($event) {
-                                      _vm.activeStep--
-                                    }
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "span",
-                                    { staticClass: "icon is-small is-left" },
-                                    [
-                                      _c("i", {
-                                        staticClass: "fas fa-angle-double-left"
-                                      })
+                                        [
+                                          _c("i", {
+                                            staticClass:
+                                              "fas fa-angle-double-left"
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("span", { staticClass: "ml-1" }, [
+                                        _vm._v("Prev")
+                                      ])
                                     ]
                                   ),
                                   _vm._v(" "),
-                                  _c("span", { staticClass: "ml-1" }, [
-                                    _vm._v("Prev")
-                                  ])
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "card-footer-item is-success",
-                                  on: {
-                                    click: function($event) {
-                                      _vm.activeStep++
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("span", { staticClass: "mr-1" }, [
-                                    _vm._v("Next")
-                                  ]),
-                                  _vm._v(" "),
                                   _c(
-                                    "span",
-                                    { staticClass: "icon is-small is-right" },
+                                    "a",
+                                    {
+                                      staticClass:
+                                        "card-footer-item is-success",
+                                      on: {
+                                        click: function($event) {
+                                          _vm.activeStep++
+                                        }
+                                      }
+                                    },
                                     [
-                                      _c("i", {
-                                        staticClass: "fas fa-angle-double-right"
-                                      })
+                                      _c("span", { staticClass: "mr-1" }, [
+                                        _vm._v("Next")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        {
+                                          staticClass: "icon is-small is-right"
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass:
+                                              "fas fa-angle-double-right"
+                                          })
+                                        ]
+                                      )
                                     ]
                                   )
-                                ]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    })
-                  ],
-                  2
-                )
-          ],
-          1
-        )
+                                ])
+                              ])
+                            ]
+                          )
+                        })
+                      ],
+                      2
+                    )
+              ],
+              1
+            )
+          : _c("div", [_vm._m(1)])
       ])
-    : _vm._e()
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -39339,14 +39373,36 @@ var staticRenderFns = [
       _c("div", { staticClass: "has-text-centered" }, [
         _c("h2", { staticClass: "title is-size-4" }, [
           _vm._v(
-            "\n                        You have successfully completed this poll.\n                    "
+            "\n                                You have successfully completed this poll.\n                            "
           )
         ]),
         _vm._v(" "),
         _c("h2", { staticClass: "title is-size-5" }, [
           _vm._v(
-            "\n                        Thank you for participating!\n                    "
+            "\n                                Thank you for participating!\n                            "
           )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card-content" }, [
+        _c("div", { staticClass: "has-text-centered" }, [
+          _c("h2", { staticClass: "title is-size-4" }, [
+            _vm._v(
+              "\n                                Sorry, this poll could not be found.\n                            "
+            )
+          ]),
+          _vm._v(" "),
+          _c("h2", { staticClass: "is-size-5" }, [
+            _vm._v(
+              "\n                                Please check your link and try again.\n                            "
+            )
+          ])
         ])
       ])
     ])
