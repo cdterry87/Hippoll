@@ -10,6 +10,12 @@
                                 Active
                             </b-switch>
                             <p v-if="!poll.active" class="help is-primary">Toggle this switch to allow others to view/take your poll.</p>
+                            <p v-else class="help is-success">
+                                Poll is active at:
+                                <a :href="activeURL" target="_blank" id="active-url" class="has-text-weight-bold">{{ activeURL }}</a>
+
+                                <b-button class="button is-small is-primary" icon-left="copy" @click="copyURL">Copy URL</b-button>
+                            </p>
                         </div>
                         <div class="columns my-1 is-mobile">
                             <div class="column is-8">
@@ -88,6 +94,11 @@
                 addQuestionModal: false,
             }
         },
+        computed: {
+            activeURL() {
+                return window.location.origin + '/p/' + this.poll.user.username + '/' + this.poll.id
+            }
+        },
         methods: {
             getPoll() {
                 axios.get('/api/polls/' + this.id)
@@ -111,10 +122,33 @@
                         position: 'is-bottom'
                     })
                 })
+            },
+            copyURL() {
+                let copyText = document.getElementById('active-url')
+
+                if (document.selection) {
+                    let range = document.body.createTextRange();
+                    range.moveToElementText(copyText);
+                    range.select().createTextRange();
+                    document.execCommand("copy");
+
+                } else if (window.getSelection) {
+                    let range = document.createRange();
+                    range.selectNode(copyText);
+                    window.getSelection().addRange(range);
+                    document.execCommand("copy");
+                }
+
+                this.$buefy.toast.open({
+                    message: 'Copied your URL: ' + copyText.innerHTML,
+                    type: 'is-success',
+                    position: 'is-bottom'
+                })
             }
         },
         mounted () {
             this.getPoll()
+            console.log('window.location', )
         },
     }
 </script>

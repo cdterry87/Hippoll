@@ -5414,6 +5414,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5431,6 +5437,11 @@ __webpack_require__.r(__webpack_exports__);
       editPollModal: false,
       addQuestionModal: false
     };
+  },
+  computed: {
+    activeURL: function activeURL() {
+      return window.location.origin + '/p/' + this.poll.user.username + '/' + this.poll.id;
+    }
   },
   methods: {
     getPoll: function getPoll() {
@@ -5459,10 +5470,34 @@ __webpack_require__.r(__webpack_exports__);
           position: 'is-bottom'
         });
       });
+    },
+    copyURL: function copyURL() {
+      var copyText = document.getElementById('active-url');
+
+      if (document.selection) {
+        var range = document.body.createTextRange();
+        range.moveToElementText(copyText);
+        range.select().createTextRange();
+        document.execCommand("copy");
+      } else if (window.getSelection) {
+        var _range = document.createRange();
+
+        _range.selectNode(copyText);
+
+        window.getSelection().addRange(_range);
+        document.execCommand("copy");
+      }
+
+      this.$buefy.toast.open({
+        message: 'Copied your URL: ' + copyText.innerHTML,
+        type: 'is-success',
+        position: 'is-bottom'
+      });
     }
   },
   mounted: function mounted() {
     this.getPoll();
+    console.log('window.location');
   }
 });
 
@@ -38643,7 +38678,38 @@ var render = function() {
                                 "Toggle this switch to allow others to view/take your poll."
                               )
                             ])
-                          : _vm._e()
+                          : _c(
+                              "p",
+                              { staticClass: "help is-success" },
+                              [
+                                _vm._v(
+                                  "\n                            Poll is active at:\n                            "
+                                ),
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "has-text-weight-bold",
+                                    attrs: {
+                                      href: _vm.activeURL,
+                                      target: "_blank",
+                                      id: "active-url"
+                                    }
+                                  },
+                                  [_vm._v(_vm._s(_vm.activeURL))]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "b-button",
+                                  {
+                                    staticClass: "button is-small is-primary",
+                                    attrs: { "icon-left": "copy" },
+                                    on: { click: _vm.copyURL }
+                                  },
+                                  [_vm._v("Copy URL")]
+                                )
+                              ],
+                              1
+                            )
                       ],
                       1
                     ),

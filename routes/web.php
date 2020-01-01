@@ -23,7 +23,7 @@ Route::get('/p/{username}/{poll}', function () {
 });
 Route::prefix('api')->group(function () {
     Route::get('/takepoll/{username}/{poll_id}', 'TakePollController@index');
-    Route::POST('/selectresponse', 'TakePollController@store');
+    Route::post('/selectresponse', 'TakePollController@store');
 });
 
 Auth::routes();
