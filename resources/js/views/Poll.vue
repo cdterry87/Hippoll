@@ -5,16 +5,28 @@
                 <Breadcrumbs />
                 <div class="card">
                     <div class="card-content">
-                        <div class="field">
-                            <b-switch v-model="poll.active" @input="changeStatus" type="is-success">
-                                Active
-                            </b-switch>
-                            <p v-if="!poll.active" class="help is-primary">Toggle this switch to allow others to view/take your poll.</p>
-                            <p v-else class="help is-success">
-                                Poll is active at:
-                                <a :href="activeURL" target="_blank" id="active-url" class="has-text-weight-bold">{{ activeURL }}</a>
-                                <b-button class="button is-small is-primary" icon-left="copy" @click="copyURL">Copy URL</b-button>
-                            </p>
+                        <div class="columns reverse-columns">
+                            <div class="column is-8">
+                                <div class="field">
+                                    <b-switch v-model="poll.active" @input="changeStatus" type="is-success">
+                                        Active
+                                    </b-switch>
+                                    <b-button v-if="poll.active" class="ml-1 button is-small is-primary" icon-left="copy" @click="copyURL">Copy URL</b-button>
+                                    <p v-if="!poll.active" class="help is-primary">Toggle this switch to allow others to view/take your poll.</p>
+                                    <p v-else class="help is-success">
+                                        Poll is active at:
+                                        <a :href="activeURL" target="_blank" id="active-url" class="has-text-weight-bold">{{ activeURL }}</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="column is-4 has-text-right">
+                                <router-link :to="'/stats/' + poll.id">
+                                    <span class="icon">
+                                        <i class="fas fa-chart-pie"></i>
+                                    </span>
+                                    <a class="is-link">Statistics</a>
+                                </router-link>
+                            </div>
                         </div>
                         <div class="columns my-1 is-mobile">
                             <div class="column is-8">

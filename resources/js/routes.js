@@ -2,6 +2,7 @@ import Home from './views/Home'
 import Poll from './views/Poll'
 import Question from './views/Question'
 import Response from './views/Response'
+import Stats from './views/Stats'
 import TakePoll from './views/TakePoll'
 import Account from './views/Account'
 import NotFound from './components/NotFound'
@@ -28,6 +29,12 @@ export default [
         path: '/response/:id',
         name: 'response',
         component: Response,
+        props: true
+    },
+    {
+        path: '/stats/:id',
+        name: 'stats',
+        component: Stats,
         props: true
     },
     {
