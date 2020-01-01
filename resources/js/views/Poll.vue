@@ -13,7 +13,6 @@
                             <p v-else class="help is-success">
                                 Poll is active at:
                                 <a :href="activeURL" target="_blank" id="active-url" class="has-text-weight-bold">{{ activeURL }}</a>
-
                                 <b-button class="button is-small is-primary" icon-left="copy" @click="copyURL">Copy URL</b-button>
                             </p>
                         </div>
