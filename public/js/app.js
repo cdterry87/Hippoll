@@ -5710,8 +5710,75 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Stats'
+  name: 'Stats',
+  props: ['id'],
+  data: function data() {
+    return {
+      poll: [],
+      activeStep: 0,
+      hasNavigation: false
+    };
+  },
+  methods: {
+    getPoll: function getPoll() {
+      var _this = this;
+
+      axios.get('/api/polls/' + this.id).then(function (response) {
+        _this.poll = response.data;
+
+        if (_.isEmpty(_this.poll)) {
+          _this.poll = false;
+        }
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getPoll();
+  }
 });
 
 /***/ }),
@@ -39296,7 +39363,162 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", [
+    _c("div", { staticClass: "columns" }, [
+      _c("div", { staticClass: "column is-8 is-offset-2" }, [
+        _vm.poll
+          ? _c(
+              "div",
+              [
+                _c(
+                  "b-steps",
+                  {
+                    attrs: { "has-navigation": _vm.hasNavigation },
+                    model: {
+                      value: _vm.activeStep,
+                      callback: function($$v) {
+                        _vm.activeStep = $$v
+                      },
+                      expression: "activeStep"
+                    }
+                  },
+                  [
+                    _c("b-step-item", { attrs: { label: "Intro" } }, [
+                      _c("div", { staticClass: "card" }, [
+                        _c("div", { staticClass: "card-content" }, [
+                          _c("div", { staticClass: "has-text-centered" }, [
+                            _c("h1", { staticClass: "title is-size-4" }, [
+                              _vm._v(_vm._s(_vm.poll.title))
+                            ]),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "my-1" }, [
+                              _vm._v(
+                                "\n                                        " +
+                                  _vm._s(_vm.poll.details) +
+                                  "\n                                    "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "mt-2" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "button is-primary",
+                                  on: {
+                                    click: function($event) {
+                                      _vm.activeStep++
+                                    }
+                                  }
+                                },
+                                [_vm._v("See Responses!")]
+                              )
+                            ])
+                          ])
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.poll.questions, function(
+                      question,
+                      questionIndex
+                    ) {
+                      return _c(
+                        "b-step-item",
+                        {
+                          key: questionIndex,
+                          attrs: {
+                            label: "#" + (questionIndex + 1),
+                            icon: "question-circle"
+                          }
+                        },
+                        [
+                          _c("div", { staticClass: "card" }, [
+                            _c("div", { staticClass: "card-content" }, [
+                              _c(
+                                "h2",
+                                {
+                                  staticClass:
+                                    "title is-size-5 has-text-centered"
+                                },
+                                [_vm._v(_vm._s(question.question))]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "card-footer" }, [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "card-footer-item is-light",
+                                  on: {
+                                    click: function($event) {
+                                      _vm.activeStep--
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "span",
+                                    { staticClass: "icon is-small is-left" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "fas fa-angle-double-left"
+                                      })
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("span", { staticClass: "ml-1" }, [
+                                    _vm._v("Prev")
+                                  ])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _vm.activeStep < _vm.poll.questions.length
+                                ? _c(
+                                    "a",
+                                    {
+                                      staticClass:
+                                        "card-footer-item is-success",
+                                      on: {
+                                        click: function($event) {
+                                          _vm.activeStep++
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("span", { staticClass: "mr-1" }, [
+                                        _vm._v("Next")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        {
+                                          staticClass: "icon is-small is-right"
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass:
+                                              "fas fa-angle-double-right"
+                                          })
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                : _vm._e()
+                            ])
+                          ])
+                        ]
+                      )
+                    })
+                  ],
+                  2
+                )
+              ],
+              1
+            )
+          : _vm._e()
+      ])
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

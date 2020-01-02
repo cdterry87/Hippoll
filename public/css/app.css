@@ -17382,9 +17382,9 @@ MIT (https://github.com/Wikiki/bulma-steps/blob/master/LICENSE)
   margin-left: 5rem !important;
 }
 
-@media (max-width: 767px) {
-  /* <== You can change this break point as per your  needs */
+/* Used to reverse the order of columns on tablet/mobile */
 
+@media (max-width: 767px) {
   .reverse-columns {
     -webkit-box-orient: vertical;
     -webkit-box-direction: reverse;

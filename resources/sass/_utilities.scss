@@ -22,7 +22,8 @@
 .mr-3 {margin-right: 5rem !important;}
 .ml-3 {margin-left: 5rem !important;}
 
-@media(max-width: 767px) { /* <== You can change this break point as per your  needs */
+/* Used to reverse the order of columns on tablet/mobile */
+@media(max-width: 767px) {
     .reverse-columns {
       flex-direction: column-reverse;
       display: flex;
