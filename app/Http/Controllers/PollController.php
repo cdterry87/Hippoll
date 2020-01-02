@@ -50,7 +50,7 @@ class PollController extends Controller
     public function show(Poll $poll)
     {
         if (auth()->id() == $poll->user_id) {
-            return response()->json($poll->where('id', $poll->id)->with(['questions', 'user'])->first());
+            return response()->json($poll->where('id', $poll->id)->with(['questions.responses', 'user'])->first());
         }
         return false;
     }

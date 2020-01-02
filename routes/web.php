@@ -42,6 +42,9 @@ Route::group(['middleware' => 'auth'], function () {
         // Extra routes
         Route::post('/status/{poll}', 'PollController@changeStatus');
 
+        // Stats routes
+        Route::get('/stats/{question}', 'StatController@stats');
+
         // User account routes
         Route::get('/user', 'UserController@index');
         Route::post('/account', 'UserController@account');

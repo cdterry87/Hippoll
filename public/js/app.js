@@ -5753,12 +5753,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Stats',
   props: ['id'],
   data: function data() {
     return {
       poll: [],
+      responses: [],
       activeStep: 0,
       hasNavigation: false
     };
@@ -5772,7 +5774,18 @@ __webpack_require__.r(__webpack_exports__);
 
         if (_.isEmpty(_this.poll)) {
           _this.poll = false;
+        } else {
+          _this.poll.questions.forEach(function (question) {
+            _this.getQuestionStats(question.id);
+          });
         }
+      });
+    },
+    getQuestionStats: function getQuestionStats(question_id) {
+      var _this2 = this;
+
+      axios.get('/api/stats/' + question_id).then(function (response) {
+        _this2.responses[question_id] = response.data;
       });
     }
   },
@@ -39399,20 +39412,37 @@ var render = function() {
                               )
                             ]),
                             _vm._v(" "),
-                            _c("p", { staticClass: "mt-2" }, [
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "button is-primary",
-                                  on: {
-                                    click: function($event) {
-                                      _vm.activeStep++
+                            _c(
+                              "div",
+                              { staticClass: "buttons is-centered mt-2" },
+                              [
+                                _c(
+                                  "b-button",
+                                  {
+                                    attrs: {
+                                      tag: "router-link",
+                                      to: "/poll/" + _vm.poll.id,
+                                      "icon-left": "angle-double-left"
                                     }
-                                  }
-                                },
-                                [_vm._v("See Responses!")]
-                              )
-                            ])
+                                  },
+                                  [_vm._v("Go Back")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "button is-primary",
+                                    on: {
+                                      click: function($event) {
+                                        _vm.activeStep++
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("See Responses!")]
+                                )
+                              ],
+                              1
+                            )
                           ])
                         ])
                       ])

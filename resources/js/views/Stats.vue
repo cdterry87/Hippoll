@@ -12,9 +12,10 @@
                                         <p class="my-1">
                                             {{ poll.details }}
                                         </p>
-                                        <p class="mt-2">
+                                        <div class="buttons is-centered mt-2">
+                                            <b-button tag="router-link" :to="'/poll/' + poll.id" icon-left="angle-double-left">Go Back</b-button>
                                             <button class="button is-primary" @click="activeStep++">See Responses!</button>
-                                        </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -54,6 +55,7 @@
         data() {
             return {
                 poll: [],
+                responses: [],
                 activeStep: 0,
                 hasNavigation: false,
             }
@@ -66,9 +68,19 @@
 
                     if (_.isEmpty(this.poll)) {
                         this.poll = false
+                    } else {
+                        this.poll.questions.forEach(question => {
+                            this.getQuestionStats(question.id)
+                        });
                     }
                 })
             },
+            getQuestionStats(question_id) {
+                axios.get('/api/stats/' + question_id)
+                .then(response => {
+                    this.responses[question_id] = response.data
+                })
+            }
         },
         mounted () {
             this.getPoll()
