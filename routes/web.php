@@ -39,11 +39,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('/questions', 'QuestionController');
         Route::resource('/responses', 'ResponseController');
 
-        // Extra routes
-        Route::post('/status/{poll}', 'PollController@changeStatus');
+        // Change a poll's status
+        Route::post('/status/{poll}', 'PollController@status');
 
         // Stats routes
-        Route::get('/stats/{question}', 'StatController@stats');
+        Route::get('/stats/{poll}', 'StatController@index');
 
         // User account routes
         Route::get('/user', 'UserController@index');

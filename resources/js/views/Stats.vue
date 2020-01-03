@@ -24,6 +24,9 @@
                             <div class="card" >
                                 <div class="card-content">
                                     <h2 class="title is-size-5 has-text-centered">{{ question.question }}</h2>
+                                    <div class="my-1">
+                                        <BarChart :chartdata="getChartData(question.id)" :options="getOptions()" style="height: 350px;" />
+                                    </div>
                                 </div>
                                 <div class="card-footer">
                                     <a class="card-footer-item is-light" @click="activeStep--">
@@ -49,37 +52,97 @@
 </template>
 
 <script>
+    import BarChart from './../components/Charts/BarChart.vue'
+
     export default {
         name: 'Stats',
         props: ['id'],
+        components: { BarChart },
         data() {
             return {
                 poll: [],
-                responses: [],
                 activeStep: 0,
                 hasNavigation: false,
             }
         },
+        computed: {
+            chartData() {
+                let questionResponses = []
+                this.poll.questions.forEach(question => {
+                    let question_id = question.id
+
+                    let responses = []
+                    let userresponses = []
+                    question.responses.forEach(response => {
+                        responses.push(response.response)
+                        userresponses[response.id] = 0
+                    })
+
+                    // Count the unique instances of users responses
+                    let userres = question.userresponses.reduce((acc, res) => {
+                        acc[res.response_id] = acc[res.response_id] ? acc[res.response_id] + 1 : 1
+                        return acc;
+                    }, Object.assign(userresponses));
+
+                    questionResponses.push({
+                        question_id,
+                        responses,
+                        userresponses
+                    })
+                })
+
+                return questionResponses
+            }
+        },
         methods: {
             getPoll() {
-                axios.get('/api/polls/' + this.id)
+                axios.get('/api/stats/' + this.id)
                 .then(response => {
                     this.poll = response.data
 
                     if (_.isEmpty(this.poll)) {
                         this.poll = false
-                    } else {
-                        this.poll.questions.forEach(question => {
-                            this.getQuestionStats(question.id)
-                        });
                     }
                 })
             },
-            getQuestionStats(question_id) {
-                axios.get('/api/stats/' + question_id)
-                .then(response => {
-                    this.responses[question_id] = response.data
+            getOptions() {
+                return {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: false
+                    },
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            },
+            getChartData(question_id) {
+                return {
+                    labels: this.getLabels(question_id),
+                    datasets: [{
+                        label: '',
+                        backgroundColor: '#3D86DA',
+                        data: this.getData(question_id)
+                    }]
+                }
+            },
+            getLabels(question_id) {
+                let labels = this.chartData.find(label => {
+                    return (label.question_id === question_id)
                 })
+                return labels.responses
+            },
+            getData(question_id) {
+                let data = this.chartData.find(data => {
+                    return (data.question_id === question_id)
+                })
+
+                return Object.values(data.userresponses)
             }
         },
         mounted () {

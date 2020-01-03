@@ -19,4 +19,9 @@ class Question extends Model
     {
         return $this->hasMany('App\Response');
     }
+
+    public function userresponses()
+    {
+        return $this->hasMany('App\UserResponse');
+    }
 }

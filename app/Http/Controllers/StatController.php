@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\UserResponse;
-use App\Question;
+use App\Poll;
 
 class StatController extends Controller
 {
-    public function stats(Question $question)
+
+    public function index(Poll $poll)
     {
-        return response()->json(UserResponse::where('question_id', $question->id)->get());
+        if (auth()->id() == $poll->user_id) {
+            return response()->json($poll->where('id', $poll->id)->with(['questions.responses', 'questions.userresponses', 'user'])->first());
+        }
+        return false;
     }
 }
