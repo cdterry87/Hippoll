@@ -74,8 +74,6 @@
 
                 axios.post('/api/account', { name, email, username })
                 .then(response => {
-                    this.user = response.data.data
-
                     this.$buefy.toast.open({
                         message: response.data.message,
                         type: 'is-success',

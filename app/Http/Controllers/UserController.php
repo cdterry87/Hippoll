@@ -34,11 +34,8 @@ class UserController extends Controller
             $request->only(['name', 'email', 'username'])
         );
 
-        $user = Auth::user()->first();
-
         return response()->json([
             'status' => $status,
-            'data' => $user,
             'message' => $status ? 'Your account was updated successfully!' : 'An error occured while updating account. Try again later.'
         ]);
     }
