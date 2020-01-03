@@ -103,7 +103,7 @@
                 })
             },
             responseSelected(question_id, response_id) {
-                axios.post('/api/selectresponse/', { question_id, response_id })
+                axios.post('/api/selectresponse', { question_id, response_id })
                 .then(response => {
                     // Save responses to local storage
                 })

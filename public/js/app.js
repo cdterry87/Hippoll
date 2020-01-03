@@ -5999,7 +5999,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     responseSelected: function responseSelected(question_id, response_id) {
-      axios.post('/api/selectresponse/', {
+      axios.post('/api/selectresponse', {
         question_id: question_id,
         response_id: response_id
       }).then(function (response) {// Save responses to local storage
