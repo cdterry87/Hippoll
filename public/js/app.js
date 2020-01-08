@@ -4746,18 +4746,32 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["HorizontalBar"],
-  props: {
-    chartdata: {
-      type: Object,
-      "default": null
-    },
-    options: {
-      type: Object,
-      "default": null
-    }
+  mixins: [vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["mixins"].reactiveProp],
+  data: function data() {
+    return {
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: {
+          display: false
+        },
+        scales: {
+          xAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    };
   },
+  // watch: {
+  //     chartData () {
+  //         this.$data._chart.update()
+  //     }
+  // },
   mounted: function mounted() {
-    this.renderChart(this.chartdata, this.options);
+    this.renderChart(this.chartData, this.options);
   }
 });
 
@@ -5829,6 +5843,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       Echo.channel('responses').listen('UserResponded', function (event) {
+        console.log('listening!');
+
         _this.getPoll();
       });
     },
@@ -5843,24 +5859,8 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    getOptions: function getOptions() {
-      return {
-        responsive: true,
-        maintainAspectRatio: false,
-        legend: {
-          display: false
-        },
-        scales: {
-          xAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
-      };
-    },
     getChartData: function getChartData(question_id) {
-      return {
+      var chartData = {
         labels: this.getLabels(question_id),
         datasets: [{
           label: '',
@@ -5868,6 +5868,7 @@ __webpack_require__.r(__webpack_exports__);
           data: this.getData(question_id)
         }]
       };
+      return chartData;
     },
     getLabels: function getLabels(question_id) {
       var labels = this.chartData.find(function (label) {
@@ -83486,8 +83487,7 @@ var render = function() {
                                   _c("BarChart", {
                                     staticStyle: { height: "350px" },
                                     attrs: {
-                                      chartdata: _vm.getChartData(question.id),
-                                      options: _vm.getOptions()
+                                      chartData: _vm.getChartData(question.id)
                                     }
                                   })
                                 ],

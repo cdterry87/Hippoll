@@ -43,7 +43,7 @@ class TakePollController extends Controller
         );
 
         if ($response) {
-            event(new UserResponded($response));
+            event(new UserResponded());
         }
 
         return response()->json([

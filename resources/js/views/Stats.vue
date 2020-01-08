@@ -25,7 +25,7 @@
                                 <div class="card-content">
                                     <h2 class="title is-size-5 has-text-centered">{{ question.question }}</h2>
                                     <div class="my-1">
-                                        <BarChart :chartdata="getChartData(question.id)" :options="getOptions()" style="height: 350px;" />
+                                        <BarChart :chartData="getChartData(question.id)" style="height: 350px;" />
                                     </div>
                                 </div>
                                 <div class="card-footer">
@@ -70,33 +70,30 @@
                 let questionResponses = []
                 this.poll.questions.forEach(question => {
                     let question_id = question.id
-
                     let responses = []
                     let userresponses = []
                     question.responses.forEach(response => {
                         responses.push(response.response)
                         userresponses[response.id] = 0
                     })
-
                     // Count the unique instances of users responses
                     let userres = question.userresponses.reduce((acc, res) => {
                         acc[res.response_id] = acc[res.response_id] ? acc[res.response_id] + 1 : 1
                         return acc;
                     }, Object.assign(userresponses));
-
                     questionResponses.push({
                         question_id,
                         responses,
                         userresponses
                     })
                 })
-
                 return questionResponses
             }
         },
         methods: {
             listen() {
                 Echo.channel('responses').listen('UserResponded', event => {
+                    console.log('listening!')
                     this.getPoll()
                 })
             },
@@ -110,24 +107,8 @@
                     }
                 })
             },
-            getOptions() {
-                return {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    legend: {
-                        display: false
-                    },
-                    scales: {
-                        xAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }]
-                    }
-                }
-            },
             getChartData(question_id) {
-                return {
+                let chartData = {
                     labels: this.getLabels(question_id),
                     datasets: [{
                         label: '',
@@ -135,6 +116,8 @@
                         data: this.getData(question_id)
                     }]
                 }
+
+                return chartData
             },
             getLabels(question_id) {
                 let labels = this.chartData.find(label => {
