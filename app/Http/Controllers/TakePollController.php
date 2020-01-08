@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Poll;
 use App\UserResponse;
+use App\Events\UserResponded;
 
 class TakePollController extends Controller
 {
@@ -36,14 +37,18 @@ class TakePollController extends Controller
      */
     public function store(Request $request)
     {
-        $status = UserResponse::updateOrCreate(
+        $response = UserResponse::updateOrCreate(
             ['question_id' => $request->question_id, 'ip' => request()->ip()],
             ['question_id' => $request->question_id, 'ip' => request()->ip(), 'response_id' => $request->response_id]
         );
 
+        if ($response) {
+            event(new UserResponded($response));
+        }
+
         return response()->json([
-            'status' => $status,
-            'message' => $status ? 'Poll updated successfully!' : 'Error updating poll!'
+            'status' => $response,
+            'message' => $response ? 'Poll updated successfully!' : 'Error updating poll!'
         ]);
     }
 }

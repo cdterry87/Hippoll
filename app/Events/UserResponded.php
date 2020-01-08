@@ -31,6 +31,6 @@ class UserResponded implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('response');
+        return new Channel('responses');
     }
 }

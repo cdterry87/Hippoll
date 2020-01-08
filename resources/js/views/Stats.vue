@@ -95,6 +95,11 @@
             }
         },
         methods: {
+            listen() {
+                Echo.channel('responses').listen('UserResponded', event => {
+                    this.getPoll()
+                })
+            },
             getPoll() {
                 axios.get('/api/stats/' + this.id)
                 .then(response => {
@@ -146,6 +151,8 @@
             }
         },
         mounted () {
+            this.listen()
+
             this.getPoll()
         },
     }

@@ -159,7 +159,6 @@
         },
         mounted () {
             this.getPoll()
-            console.log('window.location', )
         },
     }
 </script>
