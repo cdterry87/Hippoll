@@ -96345,8 +96345,8 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_1__["default"]({
   key: "be4b3366ff1422283a91",
   wsHost: window.location.hostname,
   wsPort: 6001,
-  disableStats: true,
-  forceTLS: true
+  disableStats: true // forceTLS: true
+
 });
 document.addEventListener('DOMContentLoaded', function () {
   // Get all "navbar-burger" elements
