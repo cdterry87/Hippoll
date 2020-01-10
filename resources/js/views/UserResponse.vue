@@ -81,7 +81,7 @@
 
 <script>
     export default {
-        name: 'TakePoll',
+        name: 'UserResponse',
         props: ['username', 'id'],
         data() {
             return {
@@ -93,7 +93,7 @@
         },
         methods: {
             getPoll() {
-                axios.get('/api/takepoll/' + this.username + '/' + this.id)
+                axios.get('/api/userresponse/' + this.username + '/' + this.id)
                 .then(response => {
                     this.poll = response.data
 
@@ -103,7 +103,9 @@
                 })
             },
             responseSelected(question_id, response_id) {
-                axios.post('/api/selectresponse', { question_id, response_id })
+                let poll_id = this.poll.id
+
+                axios.post('/api/selectresponse', { question_id, response_id, poll_id })
                 .then(response => {
                     // Save responses to local storage
                 })

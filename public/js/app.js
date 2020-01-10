@@ -3211,9 +3211,7 @@ __webpack_require__.r(__webpack_exports__);
     listen: function listen() {
       var _this = this;
 
-      Echo.channel('responses').listen('UserResponded', function (event) {
-        console.log('listening!');
-
+      Echo.channel('poll' + this.poll.id).listen('UserResponded', function (event) {
         _this.getPoll();
       });
     },
@@ -3222,6 +3220,8 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/stats/' + this.id).then(function (response) {
         _this2.poll = response.data;
+
+        _this2.listen();
 
         if (_.isEmpty(_this2.poll)) {
           _this2.poll = false;
@@ -3253,17 +3253,16 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    this.listen();
-    this.getPoll();
+    this.getPoll(); // this.listen()
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/TakePoll.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/TakePoll.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/UserResponse.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/UserResponse.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3351,7 +3350,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'TakePoll',
+  name: 'UserResponse',
   props: ['username', 'id'],
   data: function data() {
     return {
@@ -3365,7 +3364,7 @@ __webpack_require__.r(__webpack_exports__);
     getPoll: function getPoll() {
       var _this = this;
 
-      axios.get('/api/takepoll/' + this.username + '/' + this.id).then(function (response) {
+      axios.get('/api/userresponse/' + this.username + '/' + this.id).then(function (response) {
         _this.poll = response.data;
 
         if (_.isEmpty(_this.poll)) {
@@ -3374,9 +3373,11 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     responseSelected: function responseSelected(question_id, response_id) {
+      var poll_id = this.poll.id;
       axios.post('/api/selectresponse', {
         question_id: question_id,
-        response_id: response_id
+        response_id: response_id,
+        poll_id: poll_id
       }).then(function (response) {// Save responses to local storage
       });
     },
@@ -80947,10 +80948,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/TakePoll.vue?vue&type=template&id=1ef073f6&":
-/*!******************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/TakePoll.vue?vue&type=template&id=1ef073f6& ***!
-  \******************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/UserResponse.vue?vue&type=template&id=331edbcb&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/UserResponse.vue?vue&type=template&id=331edbcb& ***!
+  \**********************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -96849,7 +96850,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_Question__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./views/Question */ "./resources/js/views/Question.vue");
 /* harmony import */ var _views_Response__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./views/Response */ "./resources/js/views/Response.vue");
 /* harmony import */ var _views_Stats__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./views/Stats */ "./resources/js/views/Stats.vue");
-/* harmony import */ var _views_TakePoll__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./views/TakePoll */ "./resources/js/views/TakePoll.vue");
+/* harmony import */ var _views_UserResponse__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./views/UserResponse */ "./resources/js/views/UserResponse.vue");
 /* harmony import */ var _views_Account__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./views/Account */ "./resources/js/views/Account.vue");
 /* harmony import */ var _components_NotFound__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/NotFound */ "./resources/js/components/NotFound.vue");
 
@@ -96886,8 +96887,8 @@ __webpack_require__.r(__webpack_exports__);
   props: true
 }, {
   path: '/p/:username/:id',
-  name: 'takepoll',
-  component: _views_TakePoll__WEBPACK_IMPORTED_MODULE_5__["default"],
+  name: 'userresponse',
+  component: _views_UserResponse__WEBPACK_IMPORTED_MODULE_5__["default"],
   props: true
 }, {
   path: '/account',
@@ -97332,17 +97333,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/TakePoll.vue":
-/*!*****************************************!*\
-  !*** ./resources/js/views/TakePoll.vue ***!
-  \*****************************************/
+/***/ "./resources/js/views/UserResponse.vue":
+/*!*********************************************!*\
+  !*** ./resources/js/views/UserResponse.vue ***!
+  \*********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _TakePoll_vue_vue_type_template_id_1ef073f6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TakePoll.vue?vue&type=template&id=1ef073f6& */ "./resources/js/views/TakePoll.vue?vue&type=template&id=1ef073f6&");
-/* harmony import */ var _TakePoll_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TakePoll.vue?vue&type=script&lang=js& */ "./resources/js/views/TakePoll.vue?vue&type=script&lang=js&");
+/* harmony import */ var _UserResponse_vue_vue_type_template_id_331edbcb___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UserResponse.vue?vue&type=template&id=331edbcb& */ "./resources/js/views/UserResponse.vue?vue&type=template&id=331edbcb&");
+/* harmony import */ var _UserResponse_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UserResponse.vue?vue&type=script&lang=js& */ "./resources/js/views/UserResponse.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -97352,9 +97353,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _TakePoll_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _TakePoll_vue_vue_type_template_id_1ef073f6___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _TakePoll_vue_vue_type_template_id_1ef073f6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _UserResponse_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _UserResponse_vue_vue_type_template_id_331edbcb___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _UserResponse_vue_vue_type_template_id_331edbcb___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -97364,38 +97365,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/views/TakePoll.vue"
+component.options.__file = "resources/js/views/UserResponse.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/views/TakePoll.vue?vue&type=script&lang=js&":
-/*!******************************************************************!*\
-  !*** ./resources/js/views/TakePoll.vue?vue&type=script&lang=js& ***!
-  \******************************************************************/
+/***/ "./resources/js/views/UserResponse.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/views/UserResponse.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TakePoll_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./TakePoll.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/TakePoll.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TakePoll_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UserResponse_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./UserResponse.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/UserResponse.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UserResponse_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/views/TakePoll.vue?vue&type=template&id=1ef073f6&":
-/*!************************************************************************!*\
-  !*** ./resources/js/views/TakePoll.vue?vue&type=template&id=1ef073f6& ***!
-  \************************************************************************/
+/***/ "./resources/js/views/UserResponse.vue?vue&type=template&id=331edbcb&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/views/UserResponse.vue?vue&type=template&id=331edbcb& ***!
+  \****************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TakePoll_vue_vue_type_template_id_1ef073f6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./TakePoll.vue?vue&type=template&id=1ef073f6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/TakePoll.vue?vue&type=template&id=1ef073f6&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TakePoll_vue_vue_type_template_id_1ef073f6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserResponse_vue_vue_type_template_id_331edbcb___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./UserResponse.vue?vue&type=template&id=331edbcb& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/UserResponse.vue?vue&type=template&id=331edbcb&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserResponse_vue_vue_type_template_id_331edbcb___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TakePoll_vue_vue_type_template_id_1ef073f6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserResponse_vue_vue_type_template_id_331edbcb___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

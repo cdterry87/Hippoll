@@ -92,8 +92,7 @@
         },
         methods: {
             listen() {
-                Echo.channel('responses').listen('UserResponded', event => {
-                    console.log('listening!')
+                Echo.channel('poll' + this.poll.id).listen('UserResponded', event => {
                     this.getPoll()
                 })
             },
@@ -101,6 +100,8 @@
                 axios.get('/api/stats/' + this.id)
                 .then(response => {
                     this.poll = response.data
+
+                    this.listen()
 
                     if (_.isEmpty(this.poll)) {
                         this.poll = false
@@ -134,9 +135,9 @@
             }
         },
         mounted () {
-            this.listen()
-
             this.getPoll()
+
+            // this.listen()
         },
     }
 </script>

@@ -8,7 +8,7 @@ use App\Poll;
 use App\UserResponse;
 use App\Events\UserResponded;
 
-class TakePollController extends Controller
+class UserResponseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,8 +42,8 @@ class TakePollController extends Controller
             ['question_id' => $request->question_id, 'ip' => request()->ip(), 'response_id' => $request->response_id]
         );
 
-        if ($response) {
-            event(new UserResponded());
+        if ($response and !empty($request->poll_id) and $request->poll_id > 0) {
+            event(new UserResponded($request->poll_id));
         }
 
         return response()->json([

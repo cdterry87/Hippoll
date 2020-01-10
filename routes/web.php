@@ -22,8 +22,8 @@ Route::get('/p/{username}/{poll}', function () {
     return view('poll');
 });
 Route::prefix('api')->group(function () {
-    Route::get('/takepoll/{username}/{poll_id}', 'TakePollController@index');
-    Route::post('/selectresponse', 'TakePollController@store');
+    Route::get('/userresponse/{username}/{poll_id}', 'UserResponseController@index');
+    Route::post('/selectresponse', 'UserResponseController@store');
 });
 
 Auth::routes();

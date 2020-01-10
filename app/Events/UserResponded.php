@@ -14,14 +14,16 @@ class UserResponded implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public $poll_id;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($poll_id)
     {
-        //
+        $this->poll_id = $poll_id;
     }
 
     /**
@@ -31,6 +33,7 @@ class UserResponded implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('responses');
+        $poll_id = $this->poll_id;
+        return new Channel('poll' . $poll_id);
     }
 }
