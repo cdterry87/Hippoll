@@ -15,7 +15,8 @@ window.Echo = new Echo({
     wsHost: window.location.hostname,
     wsPort: 6001,
     disableStats: true,
-    forceTLS: process.env.MIX_PUSHER_FORCE_TLS
+    forceTLS: process.env.MIX_PUSHER_FORCE_TLS,
+    enabledTransports: ['ws', 'wss']
 });
 
 document.addEventListener('DOMContentLoaded', () => {
