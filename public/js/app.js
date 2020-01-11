@@ -2161,6 +2161,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'NotFound'
 });
@@ -79213,7 +79226,43 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", [
+    _c("div", { staticClass: "columns has-text-centered" }, [
+      _c("div", { staticClass: "column is-8 is-offset-2" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-content is-size-5" }, [
+            _c(
+              "section",
+              [
+                _c("h1", { staticClass: "is-size-2" }, [
+                  _vm._v("Sorry, Page Not Found")
+                ]),
+                _vm._v(" "),
+                _c("h2", { staticClass: "is-size-5 mt-1" }, [
+                  _vm._v("Please double-check your link or try again later.")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "b-button",
+                  {
+                    staticClass: "mt-2 is-medium",
+                    attrs: {
+                      type: "is-primary",
+                      tag: "router-link",
+                      "icon-left": "home",
+                      to: "/home/"
+                    }
+                  },
+                  [_vm._v("Return Home")]
+                )
+              ],
+              1
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
