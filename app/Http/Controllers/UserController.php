@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Recipe;
 use App\UserFavorites;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -17,7 +17,23 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
+    {
+        return response()->json(DB::table('polls')
+            ->select('polls.*', 'users.name', 'users.username')
+            ->join('users', 'users.id', '=', 'polls.user_id')
+            ->where('users.username', $request->username)
+            ->where('polls.active', 1)
+            ->orderBy('polls.created_at', 'desc')
+            ->get());
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show()
     {
         return response()->json(Auth::user());
     }

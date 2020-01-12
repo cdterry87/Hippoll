@@ -46,7 +46,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/stats/{poll}', 'StatController@index');
 
         // User account routes
-        Route::get('/user', 'UserController@index');
+        Route::get('/list', 'UserController@index');
+        Route::get('/user', 'UserController@show');
         Route::post('/account', 'UserController@account');
         Route::post('/password', 'UserController@password');
     });

@@ -3,6 +3,7 @@ import Poll from './views/Poll'
 import Question from './views/Question'
 import Response from './views/Response'
 import Stats from './views/Stats'
+import List from './views/List'
 import UserResponse from './views/UserResponse'
 import Account from './views/Account'
 import NotFound from './components/NotFound'
@@ -41,6 +42,12 @@ export default [
         path: '/p/:username/:id',
         name: 'userresponse',
         component: UserResponse,
+        props: true
+    },
+    {
+        path: '/p/:username',
+        name: 'list',
+        component: List,
         props: true
     },
     {
