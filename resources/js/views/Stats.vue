@@ -1,7 +1,7 @@
 <template>
      <div>
         <div class="columns">
-            <div class="column is-8 is-offset-2">
+            <div class="column is-full-mobile is-10-tablet is-offset-1-tablet is-8-desktop is-offset-2-desktop">
                 <div v-if="poll">
                     <b-steps v-model="activeStep" :has-navigation="hasNavigation">
                         <b-step-item label="Intro">
