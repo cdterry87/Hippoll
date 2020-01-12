@@ -80242,11 +80242,15 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "has-text-centered mb-2" }, [
-      _c("h1", { staticClass: "is-size-3" }, [
-        _vm._v(
-          "\n            Polls by " + _vm._s(_vm.polls[0].name) + "\n        "
-        )
-      ])
+      _vm.polls
+        ? _c("h1", { staticClass: "is-size-3" }, [
+            _vm._v(
+              "\n            Polls by " +
+                _vm._s(_vm.polls[0].name) +
+                "\n        "
+            )
+          ])
+        : _vm._e()
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "columns" }, [

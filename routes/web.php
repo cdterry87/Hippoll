@@ -14,20 +14,33 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+// Welcome route
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/p/{username}/{poll}', function () {
-    return view('poll');
+// Unauthenticated poll routes
+Route::prefix('p')->group(function () {
+    Route::get('/{username}', function () {
+        return view('poll');
+    });
+
+    Route::get('/{username}/{poll}', function () {
+        return view('poll');
+    });
 });
+
+// Unauthenticated poll API routes
 Route::prefix('api')->group(function () {
+    Route::get('/list', 'UserController@index');
     Route::get('/userresponse/{username}/{poll_id}', 'UserResponseController@index');
     Route::post('/selectresponse', 'UserResponseController@store');
 });
 
+// Auth routes
 Auth::routes();
 
+//Authenticated home route
 Route::get('/home', 'HomeController@index')->name('home');
 
 // User authenticated routes
@@ -39,14 +52,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('/questions', 'QuestionController');
         Route::resource('/responses', 'ResponseController');
 
-        // Change a poll's status
+        // Change a poll's status route
         Route::post('/status/{poll}', 'PollController@status');
 
         // Stats routes
         Route::get('/stats/{poll}', 'StatController@index');
 
         // User account routes
-        Route::get('/list', 'UserController@index');
         Route::get('/user', 'UserController@show');
         Route::post('/account', 'UserController@account');
         Route::post('/password', 'UserController@password');

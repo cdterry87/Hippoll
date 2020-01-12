@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="has-text-centered mb-2">
-            <h1 class="is-size-3">
+            <h1 class="is-size-3" v-if="polls">
                 Polls by {{ polls[0].name }}
             </h1>
         </div>
