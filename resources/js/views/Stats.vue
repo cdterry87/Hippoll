@@ -12,6 +12,12 @@
                                         <p class="my-1">
                                             {{ poll.details }}
                                         </p>
+                                        <p class="mt-2 mb-1 is-size-4">
+                                            This poll is live at: 
+                                        </p>
+                                        <p class="my-1 is-size-3 has-text-weight-bold">
+                                            <a :href="activeURL" target="_blank" id="active-url" class="has-text-weight-bold">{{ activeURL }}</a>
+                                        </p>
                                         <div class="buttons is-centered mt-2">
                                             <b-button tag="router-link" :to="'/poll/' + poll.id" icon-left="angle-double-left">Go Back</b-button>
                                             <button class="button is-primary" @click="activeStep++">See Responses!</button>
@@ -90,6 +96,13 @@
                 return questionResponses
             }
         },
+        computed: {
+            activeURL() {
+                if (this.poll && this.poll.user) {
+                    return window.location.origin + '/p/' + this.poll.user.username + '/' + this.poll.id
+                }
+            }
+        },
         methods: {
             listen() {
                 Echo.channel('poll' + this.poll.id).listen('UserResponded', event => {
@@ -121,17 +134,22 @@
                 return chartData
             },
             getLabels(question_id) {
-                let labels = this.chartData.find(label => {
-                    return (label.question_id === question_id)
-                })
-                return labels.responses
+                if (this.chartData) {
+                    let labels = this.chartData.find(label => {
+                        return (label.question_id === question_id)
+                    })
+                    return labels.responses
+                }
+                
             },
             getData(question_id) {
-                let data = this.chartData.find(data => {
-                    return (data.question_id === question_id)
-                })
+                if (this.chartData) {
+                    let data = this.chartData.find(data => {
+                        return (data.question_id === question_id)
+                    })
 
-                return Object.values(data.userresponses)
+                    return Object.values(data.userresponses)
+                }
             }
         },
         mounted () {
