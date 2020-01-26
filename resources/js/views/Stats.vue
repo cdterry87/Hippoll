@@ -94,9 +94,7 @@
                     })
                 })
                 return questionResponses
-            }
-        },
-        computed: {
+            },
             activeURL() {
                 if (this.poll && this.poll.user) {
                     return window.location.origin + '/p/' + this.poll.user.username + '/' + this.poll.id
@@ -154,8 +152,6 @@
         },
         mounted () {
             this.getPoll()
-
-            // this.listen()
         },
     }
 </script>

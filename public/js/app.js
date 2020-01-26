@@ -3195,10 +3195,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Charts_BarChart_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../components/Charts/BarChart.vue */ "./resources/js/components/Charts/BarChart.vue");
-var _name$props$component;
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -3259,7 +3255,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 
-/* harmony default export */ __webpack_exports__["default"] = (_name$props$component = {
+/* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Stats',
   props: ['id'],
   components: {
@@ -3295,65 +3291,66 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
       });
       return questionResponses;
-    }
-  }
-}, _defineProperty(_name$props$component, "computed", {
-  activeURL: function activeURL() {
-    if (this.poll && this.poll.user) {
-      return window.location.origin + '/p/' + this.poll.user.username + '/' + this.poll.id;
-    }
-  }
-}), _defineProperty(_name$props$component, "methods", {
-  listen: function listen() {
-    var _this = this;
-
-    Echo.channel('poll' + this.poll.id).listen('UserResponded', function (event) {
-      _this.getPoll();
-    });
-  },
-  getPoll: function getPoll() {
-    var _this2 = this;
-
-    axios.get('/api/stats/' + this.id).then(function (response) {
-      _this2.poll = response.data;
-
-      _this2.listen();
-
-      if (_.isEmpty(_this2.poll)) {
-        _this2.poll = false;
+    },
+    activeURL: function activeURL() {
+      if (this.poll && this.poll.user) {
+        return window.location.origin + '/p/' + this.poll.user.username + '/' + this.poll.id;
       }
-    });
-  },
-  getChartData: function getChartData(question_id) {
-    var chartData = {
-      labels: this.getLabels(question_id),
-      datasets: [{
-        label: '',
-        backgroundColor: '#3D86DA',
-        data: this.getData(question_id)
-      }]
-    };
-    return chartData;
-  },
-  getLabels: function getLabels(question_id) {
-    if (this.chartData) {
-      var labels = this.chartData.find(function (label) {
-        return label.question_id === question_id;
-      });
-      return labels.responses;
     }
   },
-  getData: function getData(question_id) {
-    if (this.chartData) {
-      var data = this.chartData.find(function (data) {
-        return data.question_id === question_id;
+  methods: {
+    listen: function listen() {
+      var _this = this;
+
+      Echo.channel('poll' + this.poll.id).listen('UserResponded', function (event) {
+        _this.getPoll();
       });
-      return Object.values(data.userresponses);
+    },
+    getPoll: function getPoll() {
+      var _this2 = this;
+
+      axios.get('/api/stats/' + this.id).then(function (response) {
+        _this2.poll = response.data;
+
+        _this2.listen();
+
+        if (_.isEmpty(_this2.poll)) {
+          _this2.poll = false;
+        }
+      });
+    },
+    getChartData: function getChartData(question_id) {
+      var chartData = {
+        labels: this.getLabels(question_id),
+        datasets: [{
+          label: '',
+          backgroundColor: '#3D86DA',
+          data: this.getData(question_id)
+        }]
+      };
+      return chartData;
+    },
+    getLabels: function getLabels(question_id) {
+      if (this.chartData) {
+        var labels = this.chartData.find(function (label) {
+          return label.question_id === question_id;
+        });
+        return labels.responses;
+      }
+    },
+    getData: function getData(question_id) {
+      if (this.chartData) {
+        var data = this.chartData.find(function (data) {
+          return data.question_id === question_id;
+        });
+        return Object.values(data.userresponses);
+      }
     }
+  },
+  mounted: function mounted() {
+    this.getPoll();
   }
-}), _defineProperty(_name$props$component, "mounted", function mounted() {
-  this.getPoll(); // this.listen()
-}), _name$props$component);
+});
 
 /***/ }),
 
