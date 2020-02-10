@@ -3471,7 +3471,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'UserResponse',
-  props: ['username', 'id'],
+  props: ['username', 'id', 'demo'],
   data: function data() {
     return {
       poll: [],

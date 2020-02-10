@@ -97,7 +97,7 @@
 <script>
     export default {
         name: 'UserResponse',
-        props: ['username', 'id'],
+        props: ['username', 'id', 'demo'],
         data() {
             return {
                 poll: [],
