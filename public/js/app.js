@@ -3257,7 +3257,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Stats',
-  props: ['id'],
+  props: ['id', 'demo'],
   components: {
     BarChart: _components_Charts_BarChart_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
@@ -3293,6 +3293,10 @@ __webpack_require__.r(__webpack_exports__);
       return questionResponses;
     },
     activeURL: function activeURL() {
+      if (this.demo) {
+        return window.location.origin + '/demo';
+      }
+
       if (this.poll && this.poll.user) {
         return window.location.origin + '/p/' + this.poll.user.username + '/' + this.poll.id;
       }
@@ -3309,7 +3313,13 @@ __webpack_require__.r(__webpack_exports__);
     getPoll: function getPoll() {
       var _this2 = this;
 
-      axios.get('/api/stats/' + this.id).then(function (response) {
+      var url = '/api/stats/';
+
+      if (this.demo) {
+        url = url + 'demo/';
+      }
+
+      axios.get(url + this.id).then(function (response) {
         _this2.poll = response.data;
 
         _this2.listen();
@@ -3363,6 +3373,21 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -81243,6 +81268,58 @@ var render = function() {
                           _c("div", { staticClass: "card" }, [
                             _c("div", { staticClass: "card-content" }, [
                               _c("div", { staticClass: "has-text-centered" }, [
+                                _c(
+                                  "p",
+                                  { staticClass: "mb-1" },
+                                  [
+                                    _c(
+                                      "b-message",
+                                      {
+                                        attrs: {
+                                          type: "is-info",
+                                          "has-icon": ""
+                                        }
+                                      },
+                                      [
+                                        _c("strong", [_vm._v("NOTE:")]),
+                                        _vm._v(
+                                          " \n                                            You can watch the stats for this poll in real-time by viewing the \n                                            "
+                                        ),
+                                        _c("strong", [
+                                          _c(
+                                            "a",
+                                            {
+                                              attrs: {
+                                                href: "/demo-stats",
+                                                target: "_blank"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "span",
+                                                { staticClass: "icon" },
+                                                [
+                                                  _c("i", {
+                                                    staticClass:
+                                                      "fas fa-chart-pie"
+                                                  })
+                                                ]
+                                              ),
+                                              _vm._v(
+                                                "\n                                                    Demo Stats\n                                                "
+                                              )
+                                            ]
+                                          )
+                                        ]),
+                                        _vm._v(
+                                          " \n                                            page in another window/tab and watching as you answer the poll questions here.\n                                        "
+                                        )
+                                      ]
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
                                 _c("h1", { staticClass: "title is-size-4" }, [
                                   _vm._v(_vm._s(_vm.poll.title))
                                 ]),
@@ -97151,6 +97228,23 @@ __webpack_require__.r(__webpack_exports__);
   name: 'list',
   component: _views_List__WEBPACK_IMPORTED_MODULE_5__["default"],
   props: true
+}, {
+  path: '/demo',
+  name: 'demo',
+  component: _views_UserResponse__WEBPACK_IMPORTED_MODULE_6__["default"],
+  props: {
+    username: 'demo',
+    id: 1,
+    demo: true
+  }
+}, {
+  path: '/demo-stats',
+  name: 'demoStats',
+  component: _views_Stats__WEBPACK_IMPORTED_MODULE_4__["default"],
+  props: {
+    id: 1,
+    demo: true
+  }
 }, {
   path: '/account',
   name: 'account',

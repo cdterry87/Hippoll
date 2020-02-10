@@ -62,7 +62,7 @@
 
     export default {
         name: 'Stats',
-        props: ['id'],
+        props: ['id', 'demo'],
         components: { BarChart },
         data() {
             return {
@@ -96,6 +96,9 @@
                 return questionResponses
             },
             activeURL() {
+                if (this.demo) {
+                    return window.location.origin + '/demo'
+                }
                 if (this.poll && this.poll.user) {
                     return window.location.origin + '/p/' + this.poll.user.username + '/' + this.poll.id
                 }
@@ -108,7 +111,12 @@
                 })
             },
             getPoll() {
-                axios.get('/api/stats/' + this.id)
+                let url = '/api/stats/'
+                if (this.demo) {
+                    url = url + 'demo/'
+                }
+
+                axios.get(url + this.id)
                 .then(response => {
                     this.poll = response.data
 

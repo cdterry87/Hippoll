@@ -19,6 +19,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Demo routes
+Route::get('/demo', function () {
+    return view('poll');
+});
+
+Route::get('/demo-stats', function () {
+    return view('poll');
+});
+
+Route::get('/api/stats/demo/{poll}', 'StatController@index')->name('demoStatRequest');
+// End demo routes
+
 // Unauthenticated poll routes
 Route::prefix('p')->group(function () {
     Route::get('/{username}', function () {

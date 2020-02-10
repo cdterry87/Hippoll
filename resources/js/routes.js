@@ -51,6 +51,25 @@ export default [
         props: true
     },
     {
+        path: '/demo',
+        name: 'demo',
+        component: UserResponse,
+        props: {
+            username: 'demo',
+            id: 1,
+            demo: true
+        }
+    },
+    {
+        path: '/demo-stats',
+        name: 'demoStats',
+        component: Stats,
+        props: {
+            id: 1,
+            demo: true
+        }
+    },
+    {
         path: '/account',
         name: 'account',
         component: Account,

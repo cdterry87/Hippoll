@@ -20,6 +20,21 @@
                             <div class="card">
                                 <div class="card-content">
                                     <div class="has-text-centered">
+                                        <p class="mb-1">
+                                            <b-message type="is-info" has-icon>
+                                                <strong>NOTE:</strong> 
+                                                You can watch the stats for this poll in real-time by viewing the 
+                                                <strong>
+                                                    <a href="/demo-stats" target="_blank">
+                                                        <span class="icon">
+                                                            <i class="fas fa-chart-pie"></i>
+                                                        </span>
+                                                        Demo Stats
+                                                    </a>
+                                                </strong> 
+                                                page in another window/tab and watching as you answer the poll questions here.
+                                            </b-message>
+                                        </p>
                                         <h1 class="title is-size-4">{{ poll.title }}</h1>
                                         <p class="my-1">
                                             {{ poll.details }}

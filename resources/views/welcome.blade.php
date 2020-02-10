@@ -6,6 +6,9 @@
     <div class="column is-half-desktop is-10-mobile is-offset-1-mobile is-vcentered my-2">
         <h1 class="is-size-1 has-text-primary mb-1 has-text-weight-bold">Be in the know,<br>Make a poll!</h1>
         <h2 class="is-size-5">Feel like you're missing something?<br>Get to know your users with a simple poll!</h2>
+        <div class="mt-1">
+            <a href="/demo" class="button is-large is-primary my-1">Check out our demo!</a>
+        </div>
     </div>
     <div class="column is-half-desktop is-10-mobile is-offset-1-mobile">
         <div class="columns">
