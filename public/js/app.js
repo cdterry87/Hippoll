@@ -81268,57 +81268,59 @@ var render = function() {
                           _c("div", { staticClass: "card" }, [
                             _c("div", { staticClass: "card-content" }, [
                               _c("div", { staticClass: "has-text-centered" }, [
-                                _c(
-                                  "p",
-                                  { staticClass: "mb-1" },
-                                  [
-                                    _c(
-                                      "b-message",
-                                      {
-                                        attrs: {
-                                          type: "is-info",
-                                          "has-icon": ""
-                                        }
-                                      },
+                                _vm.demo
+                                  ? _c(
+                                      "p",
+                                      { staticClass: "mb-1" },
                                       [
-                                        _c("strong", [_vm._v("NOTE:")]),
-                                        _vm._v(
-                                          " \n                                            You can watch the stats for this poll in real-time by viewing the \n                                            "
-                                        ),
-                                        _c("strong", [
-                                          _c(
-                                            "a",
-                                            {
-                                              attrs: {
-                                                href: "/demo-stats",
-                                                target: "_blank"
-                                              }
-                                            },
-                                            [
+                                        _c(
+                                          "b-message",
+                                          {
+                                            attrs: {
+                                              type: "is-info",
+                                              "has-icon": ""
+                                            }
+                                          },
+                                          [
+                                            _c("strong", [_vm._v("NOTE:")]),
+                                            _vm._v(
+                                              " \n                                            You can watch the stats for this poll in real-time by viewing the \n                                            "
+                                            ),
+                                            _c("strong", [
                                               _c(
-                                                "span",
-                                                { staticClass: "icon" },
+                                                "a",
+                                                {
+                                                  attrs: {
+                                                    href: "/demo-stats",
+                                                    target: "_blank"
+                                                  }
+                                                },
                                                 [
-                                                  _c("i", {
-                                                    staticClass:
-                                                      "fas fa-chart-pie"
-                                                  })
+                                                  _c(
+                                                    "span",
+                                                    { staticClass: "icon" },
+                                                    [
+                                                      _c("i", {
+                                                        staticClass:
+                                                          "fas fa-chart-pie"
+                                                      })
+                                                    ]
+                                                  ),
+                                                  _vm._v(
+                                                    "\n                                                    Demo Stats\n                                                "
+                                                  )
                                                 ]
-                                              ),
-                                              _vm._v(
-                                                "\n                                                    Demo Stats\n                                                "
                                               )
-                                            ]
-                                          )
-                                        ]),
-                                        _vm._v(
-                                          " \n                                            page in another window/tab and watching as you answer the poll questions here.\n                                        "
+                                            ]),
+                                            _vm._v(
+                                              " \n                                            page in another window/tab and watching as you answer the poll questions here.\n                                        "
+                                            )
+                                          ]
                                         )
-                                      ]
+                                      ],
+                                      1
                                     )
-                                  ],
-                                  1
-                                ),
+                                  : _vm._e(),
                                 _vm._v(" "),
                                 _c("h1", { staticClass: "title is-size-4" }, [
                                   _vm._v(_vm._s(_vm.poll.title))

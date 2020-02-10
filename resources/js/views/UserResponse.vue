@@ -20,7 +20,7 @@
                             <div class="card">
                                 <div class="card-content">
                                     <div class="has-text-centered">
-                                        <p class="mb-1">
+                                        <p class="mb-1" v-if="demo">
                                             <b-message type="is-info" has-icon>
                                                 <strong>NOTE:</strong> 
                                                 You can watch the stats for this poll in real-time by viewing the 
