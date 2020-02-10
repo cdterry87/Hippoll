@@ -19,8 +19,9 @@ class UserSeeder extends Seeder
 
         DB::table('polls')->insert([
             'user_id' => 1,
+            'active' => 1,
             'title' => 'What are some of your favorite things?',
-            'details' => 'In this poll, you will answer a few questions about some of your favorite things in life.  What makes you happy to be alive?',
+            'details' => 'In this poll, you will answer a few questions about some of your favorite things in life.  What makes you happy to be alive? Let us know by taking our poll!',
             'created_at' => NOW(),
             'updated_at' => NOW()
         ]);
@@ -58,6 +59,6 @@ class UserSeeder extends Seeder
             ['question_id' => 4, 'response' => 'None', 'created_at' => NOW(), 'updated_at' => NOW()],
         ]);
 
-        factory(App\UserResponse::class, 50)->create();
+        factory(App\UserResponse::class, 999)->create();
     }
 }
